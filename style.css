@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One");
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif");
+* {
+    box-sizing: border-box;
+}
+
+.usr-select{
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #B65F28;
+    margin: 0;
+}
+
+.content {
+    background-color: #FFFFFF;
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flexCol{
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header, .footer, .content {
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-right {
+    display: none;
+    align-items: center;
+}
+
+#header-right p {
+    margin-left: 20px;
+}
+
+.header img {
+    margin: 20px;
+}
+
+#burgerMenu {
+    border: none;
+    background-color: transparent;
+}
+
+#burgerMenu img {
+    height: 50px;
+    width: 50px;
+}
+
+.carrousel{
+    position: relative;
+}
+
+.carrousel-flow{
+    overflow: hidden;
+    height: 350px;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+@media (min-width: 768px){
+    .carrousel-flow{
+        height: 500px;
+    }
+    .info-carrousel{
+        height: 300px !important;
+        width: 300px !important;
+    }
+    .flex-footer{
+        display: flex;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+    }
+    .bloc-footer{
+        width: 25%;
+    }
+    .social-network{
+        width: 30% !important;
+    }
+    .text-style5 {
+        font-size: 2.9em !important;
+    }
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100%;
+    transition: .5s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-carrousel{
+    position: absolute;
+    z-index: 10;
+    top: 15%;
+    width: 220px;
+    height: 200px;
+}
+.carousel-dots {
+    position: absolute;
+    z-index: 20;
+    left: 50%;
+    right: 50%;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-dots .dot {
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.carousel-dots .active {
+    border: 10px solid #761530 !important;
+}
+
+.carousel-dots .inactive {
+    border: 10px solid #2596be;
+}
+.footer{
+    align-items: baseline;
+    min-height: 300px;
+}
+
+.flex-footer{
+    display: flex;
+    flex-direction: column;    
+    justify-content: space-around;
+}
+
+.social-network{
+    height: 100px;
+    width: 100%;
+}
+
+.social-network a {
+    margin: 10px;
+}
+
+.informations, .contact {
+    margin: 20px;
+}
+
+.text-white{
+    color: #FFFFFF;
+}
+
+.text-style1 {
+    font-size: 1.5em;
+    font-family: 'Fjalla One';
+    
+}
+.text-style1 a {
+    color: #FFFFFF;
+}
+
+.text-style2 {
+    display: inline-block;
+    font-family: 'Droid Serif';
+    padding: 10px;
+    border: 2px solid;
+}
+
+.text-style2 a {
+    color: #2C1E1E;
+}
+
+.text-style3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.text-style3, .text-style4 {
+    color: #2C1E1E;
+    font-family: 'Droid Serif';
+}
+
+.text-style5 {
+    font-size: 2em;
+}
+
+.border-style{
+    background: #ffffffed;
+    border: solid 5px #2C1E1E;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 3px 2px black;
+}
+
+.bloc-footer{
+    align-items: baseline !important;
+    height: 140px;
+    padding-left: 5px;
+}
+
+.zone-filtre {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#filter {
+    border: 2px solid;
+    border-color: #2C1E1E;
+    padding: 20px;
+}
+
+.table {
+    display: table;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    #header-right{
+        display: flex;
+    }
+    #burgerMenu{
+        display: none;
+    }
+}
+
+
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
