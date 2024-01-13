@@ -1,5 +1,10 @@
+/*
+Données générales
+*/
+
 @import url("https://fonts.googleapis.com/css?family=Fjalla+One");
 @import url("https://fonts.googleapis.com/css?family=Droid+Serif");
+
 * {
     box-sizing: border-box;
 }
@@ -34,6 +39,8 @@ body {
     align-items: center;
 }
 
+/*HEADER*/
+
 .header,
 .footer,
 .content {
@@ -63,11 +70,23 @@ body {
     border-radius: 3px;
 }
 
+#header-right a:hover{
+    color: #55C0CF;
+    transition: color 0.4s;
+}
+
 .bloc-header-mobile{
-    height: 60px;
+    height: 65px;
     padding-left: 10px;
 }
 
+.panier img{
+    margin-left: 10px;
+}
+.panier img:hover{
+    transition: transform 0.2s;
+    transform: rotate(-0.05turn);
+}
 
 #burgerMenu {
     border: none;
@@ -80,51 +99,7 @@ body {
     cursor: pointer;
 }
 
-.carrousel {
-    position: relative;
-}
-
-.carrousel-flow {
-    overflow: hidden;
-    height: 350px;
-    width: 100%;
-    flex-wrap: nowrap;
-}
-
-.slide {
-    flex: 0 0 100%;
-    height: 100%;
-    transition: .5s ease-in-out;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.info-carrousel {
-    position: absolute;
-    z-index: 10;
-    top: 15%;
-    width: 220px;
-    height: 200px;
-}
-
-.carrousel-dots {
-    position: absolute;
-    z-index: 20;
-    bottom: 10%;
-    justify-content: space-around;
-}
-
-.slide-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 20px;
-    background-color: #FFFFFF;
-    border: 2px solid black;
-}
+/*FOOTER*/
 
 .footer {
     align-items: baseline;
@@ -135,6 +110,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+}
+
+.bloc-footer {
+    align-items: baseline !important;
+    height: 140px;
+    padding-left: 5px;
 }
 
 .social-network {
@@ -150,6 +131,10 @@ body {
 .contact {
     margin: 20px;
 }
+
+/*
+Style des polices
+*/
 
 .text-white {
     color: #FFFFFF;
@@ -190,6 +175,94 @@ body {
     font-size: 2em;
 }
 
+
+/*
+Fin Données générales
+*/
+
+/*--------------------*/
+
+/*
+Style page d'acceuil index.html
+*/
+
+.carrousel {
+    position: relative;
+}
+
+.carrousel-flow {
+    overflow: hidden;
+    height: 350px;
+    width: 100%;
+    flex-wrap: nowrap;
+    scroll-behavior: smooth;
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100%; flex: 1 0 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-arrow-ctr{
+    position: absolute;
+    left: -2.5%;
+    width: 105%;
+    justify-content: space-between;
+}
+
+.slide-arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border: none;
+    background: radial-gradient(circle, rgba(44,30,30,1) 35%, rgba(98, 87, 87, 0.005) 78%, rgba(255, 255, 255, 0) 100%);
+    color: #FFD543;
+    border-radius: 70px;
+    cursor: pointer;
+    font-size: 50px;
+}
+.slide-arrow:hover{
+    transform: scale(1.3,1.3);
+    transition: transform 0.2s ;
+    background: radial-gradient(circle, rgb(117, 110, 110) 35%, rgba(98, 87, 87, 0.005) 78%, rgba(255, 255, 255, 0) 100%);
+}
+
+.info-carrousel {
+    position: absolute;
+    z-index: 10;
+    top: 15%;
+    width: 220px;
+    height: 200px;
+}
+
+.info-carrousel a:hover{
+    transform: scale(1.1,1.1);
+    transition: transform 0.3s ;
+}
+
+.carrousel-dots {
+    position: absolute;
+    z-index: 20;
+    bottom: 10%;
+    justify-content: space-around;
+}
+
+.slide-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    border: 2px solid black;
+}
+
 .border-style {
     background: #ffffffed;
     border: solid 5px #2C1E1E;
@@ -198,11 +271,17 @@ body {
     box-shadow: 2px 2px 3px 2px black;
 }
 
-.bloc-footer {
-    align-items: baseline !important;
-    height: 140px;
-    padding-left: 5px;
-}
+/*
+Fin style page d'accueil
+*/
+
+
+/*--------------------*/
+
+
+/*
+ Style page boutique   boutique.html
+*/
 
 .zone-filtre {
     margin-top: 10px;
@@ -220,12 +299,16 @@ body {
     padding: 10px;
 }
 
+/*
+Style pour version bureau et tablettes
+*/
+
 @media (min-width: 768px) {
     #header-right {
         display: flex;
     }
-    #header-mobile {
-        display: none;
+    .header-mobile {
+        display: none !important;
     }
     #burgerMenu {
         display: none;
@@ -252,54 +335,55 @@ body {
     .text-style5 {
         font-size: 2.9em !important;
     }
+    .slide-arrow-ctr{
+        left: 15%;
+        width: 70%;
+    }
+    .social-network img{
+        width: 80px;
+        height: 55px;
+    }
 }
 
-@media (max-width: 768px) {}
+
+
+
+
+/* style pour définir la largeur des colonnes */
 
 .col-1 {
     width: 8.33%;
 }
-
 .col-2 {
     width: 16.66%;
 }
-
 .col-3 {
     width: 25%;
 }
-
 .col-4 {
     width: 33.33%;
 }
-
 .col-5 {
     width: 41.66%;
 }
-
 .col-6 {
     width: 50%;
 }
-
 .col-7 {
     width: 58.33%;
 }
-
 .col-8 {
     width: 66.66%;
 }
-
 .col-9 {
     width: 75%;
 }
-
 .col-10 {
     width: 83.33%;
 }
-
 .col-11 {
     width: 91.66%;
 }
-
 .col-12 {
     width: 100%;
 }

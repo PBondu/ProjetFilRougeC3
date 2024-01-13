@@ -3,17 +3,18 @@
 
 <head>
     <title>Choco pap</title>
+    <link rel="icon" href="/images/logo.png" type="favicon">
     <link rel="stylesheet" href="/style.css">
+    <!--JQUERY link-->
     <script defer src="script.js"></script>
     <script src="/node_modules/jquery/dist/jquery.js"></script>
-    <link rel="icon" href="/images/logo.png">
 </head>
 
 <body>
     <!-- HEADER-->
     <div class="header flexRow col-12">
         <div id="header-logo">
-            <img src="images/logo.png" alt="logo" width="70" height="70">
+            <a href="/index.html"><img src="images/logo.png" alt="logo" width="70" height="70"></a>
         </div>
         <div id="header-right">
             <div class="text-style1">
@@ -23,7 +24,7 @@
                 <p><a href="boutique.html">Boutique</a></p>
             </div>
             <div class="panier">
-                <img src="images/panier.png" alt="panier" width="50" height="50">
+                <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
             </div>
         </div>
         <!--Menu hamburger pour version mobile-->
@@ -31,21 +32,26 @@
             <img src="/images/bars-solid.svg" alt="Icone menu déroulant">
         </div>
     </div>
-    <div class="header-mobile flexCol"><!--Menu destiné à la partie mobile-->
+    <!--DROPDOWN MENU MOBILE-->
+    <div class="header-mobile flexCol">
         <div class="text-style1 flexRow bloc-header-mobile">
             <p><a href="index.html">Accueil</a></p>
         </div>
         <div class="text-style1 flexRow bloc-header-mobile">
             <p><a href="boutique.html">Boutique</a></p>
         </div>
-        <div class="panier flexRow text-style1 bloc-header-mobile">
+        <div class="panier flexRow text-style1 text-white bloc-header-mobile">
             <p>Panier</p>
-            <img src="images/panier.png" alt="panier" width="30" height="30">
+            <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
         </div>
     </div>
     <!-- CAROUSSEL -->
     <div class="carrousel flexCol">
         <div class="carrousel-flow flexRow">
+            <div class="slide-arrow-ctr flexRow">
+                <button class="slide-arrow arrow-prev">&#0060</button>
+                <button class="slide-arrow arrow-next">&#0062</button>
+            </div>
             <div class="slide">
                 <img src="/images/accueil1.jpg" alt="Accueil1">
             </div>
@@ -61,9 +67,9 @@
             <a class="border-style text-style3" href="/boutique.html">VOIR LA BOUTIQUE</a>
         </div>
         <div class="carrousel-dots flexRow col-3">
-            <button class="slide-dot"></button>
-            <button class="slide-dot"></button>
-            <button class="slide-dot"></button>
+            <button class="slide-dot dot-one"></button>
+            <button class="slide-dot dot-two"></button>
+            <button class="slide-dot dot-three"></button>
         </div>
     </div>
     <!-- FOOTER -->

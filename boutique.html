@@ -2,22 +2,45 @@
 <html lang="fr">
     <head>
         <title>Choco pap</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="/images/logo.png" type="favicon">
+        <link rel="stylesheet" href="/style.css">
+        <!--JQUERY link-->
+        <script defer src="script.js"></script>
+        <script src="/node_modules/jquery/dist/jquery.js"></script>
     </head>
     <body>
         <!-- HEADER-->
-        <div id="header">
+        <div class="header flexRow col-12">
             <div id="header-logo">
-                <img src="images/logo.png" alt="logo" width="70" height="70">
+                <a href="/index.html"><img src="images/logo.png" alt="logo" width="70" height="70"></a>
             </div>
             <div id="header-right">
                 <div class="text-style1">
-                    <p><a href="index.html">Accueil</a></p></div>
-                <div class="text-style1">
-                    <p><a href="boutique.html">Boutique</a></p></div>
-                <div class="panier">
-                    <img src="images/panier.png" alt="panier" width="70" height="70">
+                    <p><a href="index.html">Accueil</a></p>
                 </div>
+                <div class="text-style1">
+                    <p><a href="boutique.html">Boutique</a></p>
+                </div>
+                <div class="panier">
+                    <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
+                </div>
+            </div>
+            <!--Menu hamburger pour version mobile-->
+            <div id="burgerMenu">
+                <img src="/images/bars-solid.svg" alt="Icone menu déroulant">
+            </div>
+        </div>
+        <!--DROPDOWN MENU MOBILE-->
+        <div class="header-mobile flexCol">
+            <div class="text-style1 flexRow bloc-header-mobile">
+                <p><a href="index.html">Accueil</a></p>
+            </div>
+            <div class="text-style1 flexRow bloc-header-mobile">
+                <p><a href="boutique.html">Boutique</a></p>
+            </div>
+            <div class="panier flexRow text-style1 text-white bloc-header-mobile">
+                <p>Panier</p>
+                <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
             </div>
         </div>
 
