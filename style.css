@@ -39,6 +39,10 @@ body {
     align-items: center;
 }
 
+.alignBaseline{
+    align-items: baseline !important;
+}
+
 /*HEADER*/
 
 .header,
@@ -102,7 +106,6 @@ body {
 /*FOOTER*/
 
 .footer {
-    align-items: baseline;
     min-height: 300px;
 }
 
@@ -113,7 +116,6 @@ body {
 }
 
 .bloc-footer {
-    align-items: baseline !important;
     height: 140px;
     padding-left: 5px;
 }
@@ -137,7 +139,7 @@ Style des polices
 */
 
 .text-white {
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 .text-style1 {
@@ -171,8 +173,12 @@ Style des polices
     font-family: 'Droid Serif';
 }
 
-.text-style5 {
-    font-size: 2em;
+.text-2em {
+    font-size: 2em !important;
+}
+
+.text-3em{
+    font-size: 3em !important;
 }
 
 
@@ -264,11 +270,10 @@ Style page d'acceuil index.html
 }
 
 .border-style {
-    background: #ffffffed;
+    background: #B65F28;
     border: solid 5px #2C1E1E;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: 2px 2px 3px 2px black;
 }
 
 /*
@@ -283,20 +288,68 @@ Fin style page d'accueil
  Style page boutique   boutique.html
 */
 
+.boutique-title{
+    display: flex;
+    justify-content: center;
+}
+
+.filtre-category-button, .filtre-price-button, .filtre-note-button{
+    cursor: pointer;
+    padding-bottom: 10px;
+
+}
+.filtre-category, .filtre-price, .filtre-note{
+    display: none;
+    padding-bottom: 15px;
+}
+
+.filtre-title{
+    padding-left: 20px;
+}
+
 .zone-filtre {
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 #filter {
-    border: 2px solid;
-    border-color: #2C1E1E;
     padding: 20px;
 }
 
 .table {
     display: table;
     padding: 10px;
+}
+
+/* STYLE PRODUITS*/
+
+#produit-ctr, .produit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#produit-ctr{
+    height: auto;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.produit{
+    justify-content: space-around !important;
+    height: 320px;
+    margin: 30px 0;
+}
+
+.produit img{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.produit p{
+    margin: 0;
 }
 
 /*
