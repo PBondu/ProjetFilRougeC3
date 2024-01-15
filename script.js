@@ -10,86 +10,125 @@ $("#burgerMenu img").on("click", function () {
 });
 
 //--------------------
-
+/*
+setInterval(function() {
+    console.log(window.innerWidth);
+  }, 1000);*/
 // FILTRES BOUTIQUE
-// Début du if qui vérifie que l'on soit positionné sur la page boutique
+// Début du IF qui vérifie que l'on soit positionné sur la page boutique
 if (myUrl.includes("boutique") == true){
 
-// Fonction qui permet de créer un dropdown sur le filtre CATEGORIE de la boutique
-$(".filtre-category-button").on("click", function () {
-  $(".filtre-category").slideToggle(300);
-  const slidedCat = true;
-  return slidedCat;
-});
-// Fonction qui permet de créer un dropdown sur le filtre PRICE de la boutique
-$(".filtre-price-button").on("click", function () {
-  $(".filtre-price").slideToggle(300);
-  const slidedCat = true;
-  return slidedCat;
-});
-// Fonction qui permet de créer un dropdown sur le filtre NOTE de la boutique
-$(".filtre-note-button").on("click", function () {
-  $(".filtre-note").slideToggle(300);
-  const slidedCat = true;
-  return slidedCat;
-});
+  // Début du IF pour délpoyer les menus déroulants uniquement sur mobiles
+  if (window.innerWidth < 768){
 
-// initialise une variable pour comparer si l'icone à côté du menu deroulant est un "+" ou un "-"
-let plusCat = "+";
+    // Fonction qui permet de créer un dropdown sur le filtre CATEGORIE de la boutique
+    $(".filtre-category-button").on("click", function () {
+      $(".filtre-category").slideToggle(300);
+      const slidedCat = true;
+      return slidedCat;
+    });
+    // Fonction qui permet de créer un dropdown sur le filtre PRICE de la boutique
+    $(".filtre-price-button").on("click", function () {
+      $(".filtre-price").slideToggle(300);
+      const slidedCat = true;
+      return slidedCat;
+    });
+    // Fonction qui permet de créer un dropdown sur le filtre NOTE de la boutique
+    $(".filtre-note-button").on("click", function () {
+      $(".filtre-note").slideToggle(300);
+      const slidedCat = true;
+      return slidedCat;
+    });
 
-// Fonction qui, au click, change l'icone à côté de "Catégories" du "+" au "-" et inversement
-getClass("filtre-category-button").addEventListener("click",function(){
-  if (plusCat == "+"){
-  getClass("filtre-category-button").innerHTML = "Cat&eacute;gories &#45;";
-  plusCat = "-";
-}
-else if(plusCat == "-"){
-  getClass("filtre-category-button").innerHTML = "Cat&eacute;gories &#43;";
-  plusCat = "+";
-}});
+    // Ajoute un "+" derrière le filtre en version mobile
+    getClass("filtre-category-button").innerHTML = "Cat&eacute;gories &#43;"
+    getClass("filtre-price-button").innerHTML = "Prix &#43;";
+    getClass("filtre-note-button").innerHTML = "Notes &#43;";
 
-// répétition de la fonction ci-dessus pour le filtre sur les prix et sur les notes
-// Prix
-let plusPrice = "+";
 
-getClass("filtre-price-button").addEventListener("click",function(){
-  if (plusPrice == "+"){
-  getClass("filtre-price-button").innerHTML = "Prix &#45;";
-  plusPrice = "-";
-}
-else if(plusPrice == "-"){
-  getClass("filtre-price-button").innerHTML = "Prix &#43;";
-  plusPrice = "+";
-}});
+    // Initialise une variable pour comparer si l'icone à côté du menu deroulant est un "+" ou un "-"
+    let plusCat = "+";
+    getClass("filtre-category-button").innerHTML = "Cat&eacute;gories &#43;"
+    // Fonction qui, au click, change l'icone à côté de "Catégories" du "+" au "-" et inversement
+    getClass("filtre-category-button").addEventListener("click",function(){
+      if (plusCat == "+"){
+      getClass("filtre-category-button").innerHTML = "Cat&eacute;gories &#45;";
+      plusCat = "-";
+    }
+    else if(plusCat == "-"){
+      getClass("filtre-category-button").innerHTML = "Cat&eacute;gories &#43;";
+      plusCat = "+";
+    }});
 
-// Notes
-let plusNote = "+";
+    // répétition de la fonction ci-dessus pour le filtre sur les prix et sur les notes
+    // Prix
+    let plusPrice = "+";
 
-getClass("filtre-note-button").addEventListener("click",function(){
-  if (plusNote == "+"){
-  getClass("filtre-note-button").innerHTML = "Notes &#45;";
-  plusNote = "-";
-}
-else if(plusNote == "-"){
-  getClass("filtre-note-button").innerHTML = "Notes &#43;";
-  plusNote = "+";
-}});
+    getClass("filtre-price-button").addEventListener("click",function(){
+      if (plusPrice == "+"){
+      getClass("filtre-price-button").innerHTML = "Prix &#45;";
+      plusPrice = "-";
+    }
+    else if(plusPrice == "-"){
+      getClass("filtre-price-button").innerHTML = "Prix &#43;";
+      plusPrice = "+";
+    }});
 
-// Fonction pour récupérer la class name
-function getClass(maClass){
-  return document.getElementsByClassName(maClass)[0];
-};
+    // Notes
+    let plusNote = "+";
 
+    getClass("filtre-note-button").addEventListener("click",function(){
+      if (plusNote == "+"){
+      getClass("filtre-note-button").innerHTML = "Notes &#45;";
+      plusNote = "-";
+    }
+    else if(plusNote == "-"){
+      getClass("filtre-note-button").innerHTML = "Notes &#43;";
+      plusNote = "+";
+    }});
+
+    // Fonction pour récupérer la class name
+    function getClass(maClass){
+      return document.getElementsByClassName(maClass)[0];
+    };};
 
 //--------------------
 
-
 // Produits
-function ajoutProduit(image, title, price, note) {
+function ajoutProduit(image, title, price, note, blanc, lait, noir, caramel, noix, fruit, liqueur) {
 
   let div_produit = document.createElement("div");
   div_produit.className = "produit";
-  
+
+
+  //Boucle qui comprends des IF qui créent des classes en fonction des chocolats
+  for (let i = 0; i < 7; i++) {
+
+    if (blanc == true && div_produit.className.includes("Blanc") == false){
+      div_produit.className = div_produit.className + " chBlanc";
+    }
+    else if (lait == true && div_produit.className.includes("Lait") == false){
+      div_produit.className = div_produit.className + " chLait";
+    }
+    else if (noir == true && div_produit.className.includes("Noir") == false){
+      div_produit.className = div_produit.className + " chNoir";
+    }
+    else if (caramel == true && div_produit.className.includes("Caramel") == false){
+      div_produit.className = div_produit.className + " chCaramel";
+    }
+    else if (noix == true && div_produit.className.includes("Noix") == false){
+      div_produit.className = div_produit.className + " chNoix";
+    }
+    else if (fruit == true && div_produit.className.includes("Fruit") == false){
+      div_produit.className = div_produit.className + " chFruit";
+    }
+    else if (liqueur == true && div_produit.className.includes("Liqueur") == false){
+      div_produit.className = div_produit.className + " chLiqueur";
+    }
+    else{};
+  }; // Fin de la boucle d'association de categorie
+
+
   let image_produit = document.createElement("img");
   image_produit.src = image;
 
@@ -102,12 +141,12 @@ function ajoutProduit(image, title, price, note) {
   prix_produit.className = "text-style3";
 
   let note_produit = document.createElement("p");
-  note_produit.textContent = "Note : " + note;
+  note_produit.textContent = "Note : " + note +" ★";
   note_produit.className = "text-style3";
   
   let ajoutBouton = document.createElement("button");
   ajoutBouton.textContent = "Ajouter au panier";
-  ajoutBouton.className = "border-style text-style3";
+  ajoutBouton.className = "panier-produit pointer border-style text-style3";
 
   div_produit.appendChild(image_produit);
   div_produit.appendChild(nom_produit);
@@ -118,21 +157,35 @@ function ajoutProduit(image, title, price, note) {
   document.getElementById("produit-ctr").appendChild(div_produit);
 }
 
+
 // IMPORT JSON pour données des produits
 fetch("/products.json")
         .then(response => response.json())
         .then(data => {
-            // Récupère les données du JSON pour afficher les produits un par un
+            // Récupère les données du JSON et les associe aux variables créées ci-dessus
             data.products.forEach(product => {
-              ajoutProduit(product.image, product.title, product.price, product.note);
+              ajoutProduit(product.image, product.title, product.price, product.note, product.category.blanc, product.category.lait, product.category.noir, product.category.caramel, product.category.noix, product.category.fruit, product.category.liqueur);
             });
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }; // FIN DU IF
 
 
+function checkType(type) {
+  return document.getElementsByClassName(type)[0].checked;
+};
+
+if (checkType("ch-all") == true){
+};
+//document.getElementsByClassName("produit")[1].style.color = "red";
+
+console.log(document.getElementsByClassName("produit"));
+
+
+
 
 //--------------------
+
 
 // Début du if permettant de vérifier dêtre sur la page index.html
 if (myUrl.includes("index") == true){
