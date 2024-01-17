@@ -9,6 +9,10 @@ Données générales
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .usr-select {
     user-select: none;
 }
