@@ -9,11 +9,24 @@ $("#burgerMenu img").on("click", function () {
   return slided;
 });
 
+// PANIER DEROULANT
+// Ferme le panier en cliquant sur le bouton en forme de croix
+$(".close-cart").on("click", function () {
+  $(".panier-ctr").slideToggle(400);
+  const slided = true;
+  return slided;
+});
+// Déroule la panier au click sur l'icone cart
+$(".panier").on("click", function () {
+  $(".panier-ctr").slideToggle(400);
+  const slided = true;
+  return slided;
+});
+
+
 //--------------------
-/*
-setInterval(function() {
-    console.log(window.innerWidth);
-  }, 1000);*/
+
+
 // FILTRES BOUTIQUE
 // Début du IF qui vérifie que l'on soit positionné sur la page boutique
 if (myUrl.includes("boutique") == true) {
@@ -98,98 +111,11 @@ if (myUrl.includes("boutique") == true) {
     };
   }; //Fin du IF pour réserver à la patie mobile
 
+
   //--------------------
 
-  // Fonction pour ajouter des produits dynamiquement
-  /*document.addEventListener("DOMContentLoaded", function(e) { function ajoutProduit(image, title, price, note, blanc, lait, noir, caramel, noix, fruit, liqueur) {
 
-    let div_produit = document.createElement("div");// Création de la div contenant les infos produits
-    div_produit.className = "produit";
-
-    const categories = ["Blanc", "Lait", "Noir", "Caramel", "Noix", "Fruit", "Liqueur"];
-
-    categories.forEach(category => {
-        if (eval(category.toLowerCase())) {
-            div_produit.classList.add("ch" + category);
-        }
-    });
-    //Boucle qui comprends des IF qui créent des classes en fonction des catégories des chocolats
-    /*for (let i = 0; i < 7; i++) {
-      if (blanc == true && div_produit.className.includes("Blanc") == false) {
-        div_produit.className = div_produit.className + " chBlanc";
-      }
-      else if (lait == true && div_produit.className.includes("Lait") == false) {
-        div_produit.className = div_produit.className + " chLait";
-      }
-      else if (noir == true && div_produit.className.includes("Noir") == false) {
-        div_produit.className = div_produit.className + " chNoir";
-      }
-      else if (caramel == true && div_produit.className.includes("Caramel") == false) {
-        div_produit.className = div_produit.className + " chCaramel";
-      }
-      else if (noix == true && div_produit.className.includes("Noix") == false) {
-        div_produit.className = div_produit.className + " chNoix";
-      }
-      else if (fruit == true && div_produit.className.includes("Fruit") == false) {
-        div_produit.className = div_produit.className + " chFruit";
-      }
-      else if (liqueur == true && div_produit.className.includes("Liqueur") == false) {
-        div_produit.className = div_produit.className + " chLiqueur";
-      }
-      else { };
-    }; // Fin de la boucle d'association des categories
-
-    // Création image produit
-    let image_produit = document.createElement("img");
-    image_produit.src = image;
-
-    // Création title produit
-    let nom_produit = document.createElement("p");
-    nom_produit.textContent = title;
-    nom_produit.className = "text-style3";
-
-    // Création <p> price
-    let prix_produit = document.createElement("p");
-    prix_produit.textContent = price + " €";
-    prix_produit.className = "text-style3";
-
-    // Création <p> note
-    let note_produit = document.createElement("p");
-    note_produit.textContent = "Note : " + note + " ★";
-    note_produit.className = "text-style3";
-
-    //Création button add to cart
-    let ajoutBouton = document.createElement("button");
-    ajoutBouton.textContent = "Ajouter au panier";
-    ajoutBouton.className = "panier-produit pointer border-style text-style3";
-
-    // Set la div produit en parent des images, noms etc ...
-    div_produit.appendChild(image_produit);
-    div_produit.appendChild(nom_produit);
-    div_produit.appendChild(prix_produit);
-    div_produit.appendChild(note_produit);
-    div_produit.appendChild(ajoutBouton);
-
-    // set la div produit en enfant de produit-ctr qui est présent dans le HMTL
-    document.getElementById("produit-ctr").appendChild(div_produit);
-
-  };// Fin de la fonction
-
-  // IMPORT JSON pour données des produits
-  fetch("/products.json")
-    .then(response => response.json())
-    .then(data => {
-      // Récupère les données du JSON et les associe aux variables créées ci-dessus
-      data.products.forEach(product => {
-        ajoutProduit(product.image, product.title, product.price, product.note, product.category.blanc, product.category.lait, product.category.noir, product.category.caramel, product.category.noix, product.category.fruit, product.category.liqueur);
-      });
-    })
-    .catch(error => console.error('Error fetching JSON:', error));
-
-  
-    */
-
-    // Fonction qui crée les produits dynamiquement ET qui intègre les filtres
+  // Fonction qui crée les produits dynamiquement ET qui intègre les filtres
   document.addEventListener('DOMContentLoaded', function () {
     // Charge le fichier JSON
     fetch('products.json')
@@ -203,7 +129,7 @@ if (myUrl.includes("boutique") == true) {
         // Crée dynamiquement des éléments pour chaque produit
         products.forEach(function (product) {
           var productElement = document.createElement('div');
-          productElement.className = 'produit';
+          productElement.className = `produit prodId${product.id}`;
 
           // Ajoute des classes en fonction des catégories
           Object.keys(product.category).forEach(category => {
@@ -216,12 +142,47 @@ if (myUrl.includes("boutique") == true) {
           productElement.innerHTML = `
             <img src="${product.image}" alt="${product.title}">
             <p class="text-style3">${product.title}</p>
-            <p class="text-style3">Price: ${product.price}</p>
-            <p class="text-style3">Note: ${product.note}</p>
+            <p class="text-style3 price">${product.price} &#x20AC;</p>
+            <p class="text-style3 note">Note: ${product.note}</p>
             <button class="panier-produit pointer border-style text-style3">Ajouter au Panier</button> `;
           // Les assignes en tant qu'enfant de produit
           productContainer.appendChild(productElement);
         });
+        /*
+        function getClassByQ(selector) {
+          return document.querySelector(selector);
+        };
+      
+       // getClassByQ(".prodId1 button").addEventListener('click', addToCart(products[0]));
+        
+
+        /*function addToCart(product) {
+          
+          var productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
+
+          var productElementCart = document.createElement('div');
+          productElementCart.className = 'product-cart-dyn flexRow';
+
+          // Html créé représentant les produits créés en dynamiques 
+          productElementCart.innerHTML = `
+            <button class="close-cart supr-item">X</button>
+            <img src="${product.image}" alt="${product.title}">
+            <div>
+              <p class="text-style3">${product.title}</p>
+              <p class="text-style3 price">${product.price} &#x20AC;</p>
+            </div>
+            <input id="cart-item-number" type="number" value="1" min="1"></input>
+            `;
+          // Les assignes en tant qu'enfant de produit
+          productContainerCart.appendChild(productElementCart);
+        };  */
+
+        /*getClassByQ(".cart-reset").addEventListener('click', cleanCart);
+
+        function cleanCart(){
+          productContainerCart.style.display ="none"
+
+        }*/
 
         // Récupère les classes des checkbox des Filtres
         var filterAll = document.getElementsByClassName('ch-all')[0];
@@ -233,6 +194,24 @@ if (myUrl.includes("boutique") == true) {
         var filterFruit = document.getElementsByClassName('ch-fruit')[0];
         var filterLiqueur = document.getElementsByClassName('ch-liqueur')[0];
 
+/********************************/
+
+        var minPriceInput = document.getElementById('prix-min');
+        var maxPriceInput = document.getElementById('prix-max');
+
+        minPriceInput.addEventListener('change', filterProducts);
+        maxPriceInput.addEventListener('change', filterProducts);
+
+/********************************/
+
+        var minNoteInput = document.getElementById('note-min');
+        var maxNoteInput = document.getElementById('note-max');
+
+        minNoteInput.addEventListener('change', filterProducts);
+        maxNoteInput.addEventListener('change', filterProducts);
+
+/********************************/
+
         // Au check les produits s'affichent ou se masquent
         // Egalement les cases de cochent et se décochent si on coche la case TOUT
         filterAll.addEventListener('change', closeOnAll);
@@ -243,24 +222,24 @@ if (myUrl.includes("boutique") == true) {
 
         filterLait.addEventListener('change', closeAllOnOther);
         filterLait.addEventListener('change', filterProducts);
-        
+
         filterNoir.addEventListener('change', closeAllOnOther);
         filterNoir.addEventListener('change', filterProducts);
-        
+
         filterCaramel.addEventListener('change', closeAllOnOther);
         filterCaramel.addEventListener('change', filterProducts);
-        
+
         filterNoix.addEventListener('change', closeAllOnOther);
         filterNoix.addEventListener('change', filterProducts);
-        
+
         filterFruit.addEventListener('change', closeAllOnOther);
         filterFruit.addEventListener('change', filterProducts);
-        
+
         filterLiqueur.addEventListener('change', closeAllOnOther);
         filterLiqueur.addEventListener('change', filterProducts);
 
         // Fonction qui décoche toutes les cases quand l'on coche TOUS
-        function closeOnAll () {
+        function closeOnAll() {
           filterBlanc.checked = false;
           filterLait.checked = false;
           filterNoir.checked = false;
@@ -270,15 +249,15 @@ if (myUrl.includes("boutique") == true) {
           filterLiqueur.checked = false;
         };
         // Fonction qui décoche TOUS quand l'on coche une autre case
-        function closeAllOnOther () {
+        function closeAllOnOther() {
           filterAll.checked = false;
         };
 
         // Récupère le chargement de la page et lance la fonction ci-dessous
-        document.querySelector(".content").onload = closeFilter();
+        document.querySelector(".content").onload = closeFilterOnLoad();
         // Fonction pour décocher les filtres au chargement de la page
-        function closeFilter() {
-          filterAll.checked = false;
+        function closeFilterOnLoad() {
+          filterAll.checked = true;
           filterBlanc.checked = false;
           filterLait.checked = false;
           filterNoir.checked = false;
@@ -286,12 +265,16 @@ if (myUrl.includes("boutique") == true) {
           filterNoix.checked = false;
           filterFruit.checked = false;
           filterLiqueur.checked = false;
+          minPriceInput.value = 0;
+          maxPriceInput.value = 20;
+          minNoteInput.value = 1;
+          maxNoteInput.value = 5;
         };
-        
+
         // Fonction pour filtrer les produits en fonction des cases à cocher
         function filterProducts() {
           var selectedCategories = [];
-          // Si case est cochée -> push la catégorie cochée
+          // Si case est cochée -> push la catégorie cochée au tableau catégories sélectionnées
           if (filterAll.checked) {
             selectedCategories.push('chBlanc');
             selectedCategories.push('chLait');
@@ -323,17 +306,28 @@ if (myUrl.includes("boutique") == true) {
             selectedCategories.push('chLiqueur');
           }
 
+          const minNote = parseFloat(minNoteInput.value) || 1;
+          const maxNote = parseFloat(maxNoteInput.value) || 5;
+
+          const minPrice = parseFloat(minPriceInput.value) || 0;
+          const maxPrice = parseFloat(maxPriceInput.value) || 20;
+
           // Affiche ou masque les produits en fonction des catégories sélectionnées
           var allProducts = document.getElementsByClassName('produit');
           for (var i = 0; i < allProducts.length; i++) {
             var product = allProducts[i];
-            var isVisible = selectedCategories.length === 0 || selectedCategories.some(cat => product.classList.contains(cat));
-            product.style.display = isVisible ? 'flex' : 'none';
-          }
-        }
-      })
-      .catch(error => console.error('Error loading JSON:', error));
+            const productPrice = parseFloat(product.querySelector('.price').textContent.split(' €')[0]);// Récupère le prix du produit
+            const productNote = parseFloat(product.querySelector('.note').textContent.split('Note: ')[1]);// Récupère la note du produit
+            const isVisible = selectedCategories.length === 0 || selectedCategories.some(cat => product.classList.contains(cat));
+            const isInPriceRange = productPrice >= minPrice && productPrice <= maxPrice; // Affiche le produit si le prix est dans la range sélectionnée par l'utilisateur
+            const isInNoteRange = productNote >= minNote && productNote <= maxNote; // Same pour la note
+            product.style.display = (isVisible && isInPriceRange && isInNoteRange) ? 'flex' : 'none'; // Si le produit respecte les conditions de prix, note et catégories display:flex / si non :none
+          };
+        };
+      });
   });
+
+
 }; // FIN DU IF BOUTIQUE
 
 

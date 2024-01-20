@@ -22,7 +22,7 @@
                 <div class="text-style1">
                     <p><a href="boutique.html">Boutique</a></p>
                 </div>
-                <div class="panier">
+                <div class="panier pointer">
                     <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
                 </div>
             </div>
@@ -32,20 +32,35 @@
             </div>
         </div>
         <!--DROPDOWN MENU MOBILE-->
-        <div class="header-mobile flexCol">
+        <div class="header-mobile flexCol usr-select">
             <div class="text-style1 flexRow bloc-header-mobile">
                 <p><a href="index.html">Accueil</a></p>
             </div>
             <div class="text-style1 flexRow bloc-header-mobile">
                 <p><a href="boutique.html">Boutique</a></p>
             </div>
-            <div class="panier flexRow text-style1 text-white bloc-header-mobile">
+            <div class="panier flexRow text-style1 text-white bloc-header-mobile usr-select">
                 <p>Panier</p>
                 <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
             </div>
         </div>
         <!--BOUTIQUE-->
         <div class="content flexCol alignBaseline">
+            <div class="panier-ctr flexCol panier-ctr-pos">
+                <button class="close-cart close-cart-pos text-2em pointer">X</button>
+                <div class="panier-title flexCol width100">
+                    <h2 class="text-style1">PANIER</h2>
+                </div>
+                <div class="panier-products-ctr width100">
+                </div>
+                <div class="panier-button-ctr flexCol width100">
+                    <p class="user-price text-style1">15</p>
+                    <div class="panier-button flexCol">
+                        <button class="text-style1 cart-reset">réinitialiser LE PANIER</button>
+                        <button class="text-style1 cart-validate">VALIDER LE PANIER</button>
+                    </div>
+                </div>
+            </div>
             <h1 class="boutique-title text-style1 text-3em">BOUTIQUE</h1>
             <!-- FILTRES -->
             <div class="filter flexCol alignBaseline">
@@ -90,11 +105,11 @@
                     <div>
                         <div>
                             <span class="text-style4">Prix min</span>
-                            <input type="number" id="prix-min" min="0">
+                            <input type="number" id="prix-min" min="0" max="20">
                         </div>
                         <div>
                             <span class="text-style4">Prix max</span>
-                            <input type="number" id="prix-max" min="0">
+                            <input type="number" id="prix-max" min="0" max="20">
                         </div> 
                     </div>
                 </div>
@@ -103,7 +118,7 @@
                     <div>
                         <div>
                             <span class="text-style4">Note min</span>
-                            <select>
+                            <select id="note-min">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -113,7 +128,7 @@
                         </div>
                         <div>
                             <span class="text-style4">Note max</span>
-                            <select>
+                            <select id="note-max">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
