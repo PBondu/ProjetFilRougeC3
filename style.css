@@ -35,7 +35,6 @@ body {
 }
 
 .content {
-    justify-content: flex-start !important;
     background-color: #FFFFFF;
     position: relative;
     min-height: 800px;
@@ -56,6 +55,10 @@ body {
 
 .alignBaseline{
     align-items: baseline !important;
+}
+
+.flexStart{
+    justify-content: flex-start !important;
 }
 
 /*
@@ -310,11 +313,6 @@ Fin style page d'accueil
     padding: 20px;
 }
 
-.table {
-    display: table;
-    padding: 10px;
-}
-
 /* 
 STYLE PRODUITS
 */
@@ -367,8 +365,8 @@ STYLE PANIER
     right: 0;
 }
 
-.panier-ctr{/*
-    display: none;*/
+.panier-ctr{
+    display: none;
     justify-content: flex-start !important;
     width: 100%;
     height: 100%;
@@ -438,7 +436,26 @@ PRODUITS PANIER
 }
 
 
+/*
+STYLE PAGE PRODUIT.HTML
+*/
 
+.table{
+    min-height: 450px;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.table-product img{
+    width: 90%;
+    object-fit: cover;
+    margin: 30px 0;
+}
+
+.ingre{
+    min-height: 300px;
+    padding-left: 20px;
+}
 
 /*
 Style pour version bureau et tablettes

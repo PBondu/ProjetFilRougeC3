@@ -24,6 +24,41 @@ $(".panier").on("click", function () {
 });
 
 
+/*
+
+if (myUrl.includes("produit")) {
+
+function PageProduct(product) {
+
+  let pageProductCtr = document.getElementsByClassName("page-product-ctr")[0];
+
+  let pageProductElement = document.createElement('div');
+  pageProductElement.className = '';
+  
+  // Html créé représentant les produits créés en dynamiques 
+  pageProductElement.innerHTML = `
+  <div class="table flexCol alignBaseline width100">
+  <div class="text-style1">${product.title}</div>
+  <div class="text-style3">XX €</div>
+  <div class="text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+  <input type="number" id="qte" value="1">
+  <div class="text-style2">AJOUTER AU PANIER</div>
+</div>
+<div class="table-product flexCol">
+  <img src="images/produit1.jpg" alt="produit1">
+</div>
+<div class="ingre content flexCol alignBaseline width100">
+  <div class="text-style1">Ingrédients</div>
+  <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+</div>
+    `;
+  // Les assignes en tant qu'enfant de produit
+  pageProductCtr.appendChild(pageProductElement);
+};
+
+};*/
+
+
 //--------------------
 
 
@@ -124,11 +159,11 @@ if (myUrl.includes("boutique") == true) {
         const products = data.products || [];
 
         // Récupère le conteneur des produits
-        var productContainer = document.getElementById('produit-ctr');
+        let productContainer = document.getElementById('produit-ctr');
 
         // Crée dynamiquement des éléments pour chaque produit
         products.forEach(function (product) {
-          var productElement = document.createElement('div');
+          let productElement = document.createElement('div');
           productElement.className = `produit prodId${product.id}`;
 
           // Ajoute des classes en fonction des catégories
@@ -148,19 +183,27 @@ if (myUrl.includes("boutique") == true) {
           // Les assignes en tant qu'enfant de produit
           productContainer.appendChild(productElement);
         });
-        /*
+
+
+
+        // ESPACE TEST CREATION PANIER
+
         function getClassByQ(selector) {
           return document.querySelector(selector);
         };
-      
-       // getClassByQ(".prodId1 button").addEventListener('click', addToCart(products[0]));
+
+        let panier = [];
+
         
+        function addToCart(product) {
 
-        /*function addToCart(product) {
-          
-          var productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
+        };
 
-          var productElementCart = document.createElement('div');
+        function CreateCartProduct(product) {
+
+          let productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
+
+          let productElementCart = document.createElement('div');
           productElementCart.className = 'product-cart-dyn flexRow';
 
           // Html créé représentant les produits créés en dynamiques 
@@ -175,7 +218,7 @@ if (myUrl.includes("boutique") == true) {
             `;
           // Les assignes en tant qu'enfant de produit
           productContainerCart.appendChild(productElementCart);
-        };  */
+        };
 
         /*getClassByQ(".cart-reset").addEventListener('click', cleanCart);
 
@@ -184,33 +227,53 @@ if (myUrl.includes("boutique") == true) {
 
         }*/
 
+
+
+
+        // ESPACE TEST CREATION PRODUIT.HTML DYNAMIQUES
+
+/*
+        getClassByQ(".prodId1").addEventListener('click', function () {
+
+          document.location ='/produit.html';
+          console.log('crotte')
+
+          are();
+          console.log('crotte')
+
+        });
+*/
+
+
+
+
         // Récupère les classes des checkbox des Filtres
-        var filterAll = document.getElementsByClassName('ch-all')[0];
-        var filterBlanc = document.getElementsByClassName('ch-blanc')[0];
-        var filterLait = document.getElementsByClassName('ch-lait')[0];
-        var filterNoir = document.getElementsByClassName('ch-noir')[0];
-        var filterCaramel = document.getElementsByClassName('ch-caramel')[0];
-        var filterNoix = document.getElementsByClassName('ch-noix')[0];
-        var filterFruit = document.getElementsByClassName('ch-fruit')[0];
-        var filterLiqueur = document.getElementsByClassName('ch-liqueur')[0];
+        let filterAll = document.getElementsByClassName('ch-all')[0];
+        let filterBlanc = document.getElementsByClassName('ch-blanc')[0];
+        let filterLait = document.getElementsByClassName('ch-lait')[0];
+        let filterNoir = document.getElementsByClassName('ch-noir')[0];
+        let filterCaramel = document.getElementsByClassName('ch-caramel')[0];
+        let filterNoix = document.getElementsByClassName('ch-noix')[0];
+        let filterFruit = document.getElementsByClassName('ch-fruit')[0];
+        let filterLiqueur = document.getElementsByClassName('ch-liqueur')[0];
 
-/********************************/
+        /********************************/
 
-        var minPriceInput = document.getElementById('prix-min');
-        var maxPriceInput = document.getElementById('prix-max');
+        let minPriceInput = document.getElementById('prix-min');
+        let maxPriceInput = document.getElementById('prix-max');
 
         minPriceInput.addEventListener('change', filterProducts);
         maxPriceInput.addEventListener('change', filterProducts);
 
-/********************************/
+        /********************************/
 
-        var minNoteInput = document.getElementById('note-min');
-        var maxNoteInput = document.getElementById('note-max');
+        let minNoteInput = document.getElementById('note-min');
+        let maxNoteInput = document.getElementById('note-max');
 
         minNoteInput.addEventListener('change', filterProducts);
         maxNoteInput.addEventListener('change', filterProducts);
 
-/********************************/
+        /********************************/
 
         // Au check les produits s'affichent ou se masquent
         // Egalement les cases de cochent et se décochent si on coche la case TOUT
@@ -273,7 +336,7 @@ if (myUrl.includes("boutique") == true) {
 
         // Fonction pour filtrer les produits en fonction des cases à cocher
         function filterProducts() {
-          var selectedCategories = [];
+          let selectedCategories = [];
           // Si case est cochée -> push la catégorie cochée au tableau catégories sélectionnées
           if (filterAll.checked) {
             selectedCategories.push('chBlanc');
@@ -313,9 +376,9 @@ if (myUrl.includes("boutique") == true) {
           const maxPrice = parseFloat(maxPriceInput.value) || 20;
 
           // Affiche ou masque les produits en fonction des catégories sélectionnées
-          var allProducts = document.getElementsByClassName('produit');
-          for (var i = 0; i < allProducts.length; i++) {
-            var product = allProducts[i];
+          let allProducts = document.getElementsByClassName('produit');
+          for (let i = 0; i < allProducts.length; i++) {
+            let product = allProducts[i];
             const productPrice = parseFloat(product.querySelector('.price').textContent.split(' €')[0]);// Récupère le prix du produit
             const productNote = parseFloat(product.querySelector('.note').textContent.split('Note: ')[1]);// Récupère la note du produit
             const isVisible = selectedCategories.length === 0 || selectedCategories.some(cat => product.classList.contains(cat));
@@ -380,4 +443,3 @@ if (myUrl.includes("index") == true) {
   slide.clientWidth.onchange = slidesContainer.scrollLeft -= 10000;
 
 }; // FIN DU IF INDEX
-

@@ -8,6 +8,8 @@
         <link rel="stylesheet" href="/style.css">
         <!--JQUERY link-->
         <script src="/node_modules/jquery/dist/jquery.js"></script>
+        <!--VUEJS link-->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     </head>
     <body>
         <!-- HEADER-->
@@ -16,6 +18,9 @@
                 <a href="/index.html"><img src="images/logo.png" alt="logo" width="70" height="70"></a>
             </div>
             <div id="header-right">
+                <div class="text-style1">
+                    <p><a href="produit.html">produit</a></p>
+                </div>
                 <div class="text-style1">
                     <p><a href="index.html">Accueil</a></p>
                 </div>
@@ -45,7 +50,7 @@
             </div>
         </div>
         <!--BOUTIQUE-->
-        <div class="content flexCol alignBaseline">
+        <div class="content flexCol alignBaseline flexStart">
             <div class="panier-ctr flexCol panier-ctr-pos">
                 <button class="close-cart close-cart-pos text-2em pointer">X</button>
                 <div class="panier-title flexCol width100">
