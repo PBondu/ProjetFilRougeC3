@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco pap</title>
+    <link rel="icon" href="/images/logo.png" type="favicon">
+    <link rel="stylesheet" href="/style.css">
+
+    <script defer src="script.js"></script>
+    <script type=".module" src="/src/main.js"></script>
+
+
+    <!--JQUERY link-->
+    <script src="/node_modules/jquery/dist/jquery.js"></script>
+    <!--VUEJS link-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
+</head>
+
+<body>
+    <!-- HEADER-->
+    <div class="header flexRow col-12">
+        <div id="header-logo">
+            <a href="/index.html"><img src="images/logo.png" alt="logo" width="70" height="70"></a>
+        </div>
+        <div id="header-right">
+            <div class="text-style1">
+                <p><a href="produit.html">produit</a></p>
+            </div>
+            <div class="text-style1">
+                <p><a href="index.html">Accueil</a></p>
+            </div>
+            <div class="text-style1">
+                <p><a href="boutique.html">Boutique</a></p>
+            </div>
+            <div class="panier pointer">
+                <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
+            </div>
+        </div>
+        <!--Menu hamburger pour version mobile-->
+        <div id="burgerMenu">
+            <img src="/images/bars-solid.svg" alt="Icone menu déroulant">
+        </div>
+    </div>
+    <!--DROPDOWN MENU MOBILE-->
+    <div class="header-mobile flexCol usr-select">
+        <div class="text-style1 flexRow bloc-header-mobile">
+            <p><a href="index.html">Accueil</a></p>
+        </div>
+        <div class="text-style1 flexRow bloc-header-mobile">
+            <p><a href="boutique.html">Boutique</a></p>
+        </div>
+        <div class="panier flexRow text-style1 text-white bloc-header-mobile usr-select">
+            <p>Panier</p>
+            <img src="images/cart-shopping-solid.svg" alt="panier" width="30" height="30">
+        </div>
+    </div>
+    <div class="page-product-ctr content flexCol">
+        <div class="page-product-ctr">
+         
+        </div>
+
+
+        <!--<div class="table flexCol alignBaseline width100">
+            <div class="cul text-style1">Nom produit</div>
+            <div class="text-style3">XX €</div>
+            <div class="text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur.</div>
+            <input type="number" id="qte" value="1">
+            <div class="text-style2">AJOUTER AU PANIER</div>
+        </div>
+        <div class="table-product flexCol">
+            <img src="images/produit1.jpg" alt="produit1">
+        </div>
+        <div class="ingre content flexCol alignBaseline width100">
+            <div class="text-style1">Ingrédients</div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                fugiat nulla pariatur.</div>
+        </div>-->
+    </div>
+    <!-- FOOTER -->
+    <div class="footer alignBaseline flex-footer col-11">
+        <div class="informations bloc-footer alignBaseline flexCol">
+            <div class="text-white text-style3">Choco pap</div>
+            <div class="text-white text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua</div>
+        </div>
+        <div class="contact bloc-footer alignBaseline flexCol">
+            <div class="text-white text-style3">Contact</div>
+            <div>
+                <div class="text-white text-style4">Adresse : 51 rue du chocolat 75000 Paris</div>
+                <div class="text-white text-style4">Téléphone: 01 23 45 67 89</div>
+                <div class="text-white text-style4">Horaires: 9h00-17h00 du Lundi au vendredi</div>
+            </div>
+        </div>
+        <div class="social-network flexRow">
+            <a href=""><img src="/images/facebook.svg" width="40" height="40" alt="facebook"></a>
+            <a href=""><img src="/images/instagram.svg" width="40" height="40" alt="instagram"></a>
+            <a href=""><img src="/images/twitter.svg" width="40" height="40" alt="twitter"></a>
+        </div>
+    </div>
+</body>
+
+</html>

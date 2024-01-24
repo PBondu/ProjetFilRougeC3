@@ -1,0 +1,607 @@
+/*
+Données générales
+*/
+
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One");
+@import url("https://fonts.googleapis.com/css?family=Droid+Serif");
+
+* {
+    box-sizing: border-box;
+}
+
+.usr-select {
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.width100{
+    width: 100%;
+}
+
+.pointer{
+cursor: pointer;
+}
+
+.boutique-pointer{
+    cursor: pointer;
+}
+
+body {
+    background-color: #B65F28;
+    margin: 0;
+}
+
+.content {
+    background-color: #FFFFFF;
+    position: relative;
+    min-height: 800px;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flexCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.alignBaseline{
+    align-items: baseline !important;
+}
+
+.flexStart{
+    justify-content: flex-start !important;
+}
+
+/*
+HEADER  
+*/
+
+.header,
+.footer{
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-right {
+    display: none;
+    align-items: center;
+    transition: ea;
+}
+
+#header-right p {
+    margin-left: 20px;
+}
+
+.header img {
+    margin: 20px;
+}
+
+.header-mobile {
+    display: none;
+    background-color: #2C1E1E;
+    border-top: 4px solid #FFD543;
+    border-bottom: 2px solid #FFD543;
+    border-radius: 3px;
+}
+
+.bloc-header-mobile{
+    height: 65px;
+    padding-left: 10px;
+}
+
+.panier img{
+    margin-left: 10px;
+}
+
+#burgerMenu {
+    border: none;
+    background-color: transparent;
+}
+
+#burgerMenu img {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+
+/*
+FOOTER  
+*/
+
+.footer {
+    min-height: 300px;
+}
+
+.flex-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.bloc-footer {
+    height: 140px;
+    padding-left: 5px;
+}
+
+.social-network {
+    height: 100px;
+    width: 100%;
+}
+
+.social-network a {
+    margin: 10px;
+}
+
+.informations,
+.contact {
+    margin: 20px;
+}
+
+/*
+Style des polices
+*/
+
+.text-white {
+    color: #FFFFFF !important;
+}
+
+.text-style1 {
+    font-size: 1.5em;
+    font-family: 'Fjalla One';
+}
+
+.text-style1 a {
+    color: #FFFFFF;
+}
+
+.text-style2 {
+    display: inline-block;
+    font-family: 'Droid Serif';
+    padding: 10px;
+    border: 2px solid;
+}
+
+.text-style2 a {
+    color: #2C1E1E;
+}
+
+.text-style3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.text-style3,
+.text-style4 {
+    color: #2C1E1E;
+    font-family: 'Droid Serif';
+}
+
+.text-2em {
+    font-size: 2em !important;
+}
+
+.text-3em{
+    font-size: 3em !important;
+}
+
+
+/*
+Fin Données générales
+*/
+
+/*--------------------*/
+
+/*
+Style page d'acceuil index.html
+*/
+
+.carrousel {
+    position: relative;
+}
+
+.carrousel-flow {
+    overflow: hidden;
+    height: 350px;
+    width: 100%;
+    flex-wrap: nowrap;
+    scroll-behavior: smooth;
+}
+
+.slide {
+    flex: 0 0 100%;
+    height: 100%; flex: 1 0 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-arrow-ctr{
+    position: absolute;
+    left: -2.5%;
+    width: 105%;
+    justify-content: space-between;
+}
+
+.slide-arrow{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border: none;
+    background: radial-gradient(circle, rgba(44,30,30,1) 35%, rgba(98, 87, 87, 0.005) 78%, rgba(255, 255, 255, 0) 100%);
+    color: #FFD543;
+    border-radius: 70px;
+    font-size: 50px;
+}
+
+.info-carrousel {
+    position: absolute;
+    z-index: 10;
+    top: 15%;
+    width: 220px;
+    height: 200px;
+}
+
+.carrousel-dots {
+    position: absolute;
+    z-index: 20;
+    bottom: 10%;
+    justify-content: space-around;
+}
+
+.slide-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background-color: #FFFFFF;
+    border: 2px solid black;
+}
+
+.border-style {
+    background: #B65F28;
+    border: solid 5px #2C1E1E;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/*
+Fin style page d'accueil
+*/
+
+
+/*--------------------*/
+
+
+/*
+ Style page boutique   boutique.html
+*/
+
+.boutique-title{
+    display: flex;
+    justify-content: center;
+    margin: 35px 0;
+    width: 100%;
+}
+
+.filtre-category-button, .filtre-price-button, .filtre-note-button{
+    padding-bottom: 10px;
+
+}
+.filtre-category, .filtre-price, .filtre-note{
+    display: none;
+    padding-bottom: 15px;
+}
+
+.zone-filtre, .zone-filtre div{
+    margin: 5px 0;
+}
+
+.filter {
+    padding: 20px;
+}
+
+/* 
+STYLE PRODUITS
+*/
+
+#produit-ctr, .produit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#produit-ctr{
+    height: auto;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.produit{
+    justify-content: space-around !important;
+    height: 340px;
+    width: 220px;
+    margin: 30px 0;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #2C1E1E;
+}
+
+.produit img{
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.produit p{
+    margin: 0;
+}
+
+.panier-produit{
+    cursor: pointer;
+}
+
+
+/*
+STYLE PANIER
+*/
+
+.panier-ctr-pos{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.panier-ctr{
+    display: none;
+    justify-content: flex-start !important;
+    width: 100%;
+    height: 100%;
+    background-color: #55C0CF;
+    z-index: 1000;
+}
+
+.close-cart-pos{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.close-cart{
+    height: 40px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+}
+
+.panier-title{
+    height: 15vh;
+    background-color: rgba(196, 64, 134, 0.586);
+}
+.panier-products-ctr{
+    min-height: 40vh;
+    background-color: darkolivegreen;
+}
+.panier-button-ctr{
+    position: sticky;
+    height: 250px;
+    background-color: goldenrod;
+}
+.panier-button{
+    height: 50%;
+}
+.panier-button button{
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+
+
+/*
+PRODUITS PANIER
+*/
+
+.product-cart-dyn{
+    width: 80%;
+    justify-content: space-around;
+}
+
+.product-cart-dyn img{
+
+    width: 100px;
+    height: 80px;
+
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+#cart-item-number{
+    width: 45px;
+}
+
+.product-cart-dyn div{
+    width: 130px;
+}
+
+
+/*
+STYLE PAGE PRODUIT.HTML
+*/
+
+.table{
+    min-height: 450px;
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.table-product img{
+    width: 90%;
+    object-fit: cover;
+    margin: 30px 0;
+}
+
+.ingre{
+    min-height: 300px;
+    padding-left: 20px;
+}
+
+/*
+Style pour version bureau et tablettes
+*/
+
+@media (min-width: 768px) {
+    #header-right {
+        display: flex;
+    }
+    #header-right a:hover{
+        color: #55C0CF;
+        transition: color 0.4s;
+    }
+    .header-mobile {
+        display: none !important;
+    }
+    #burgerMenu {
+        display: none;
+    }
+    .panier img:hover{
+        transition: transform 0.2s;
+        transform: rotate(-0.05turn);
+    }
+    .panier-produit:hover{
+        color:#FFFFFF;
+        transition: color 0.3s, transform 0.3s;
+        transform: scale(1.05,1.05)
+    }
+    .carrousel-flow {
+        height: 500px;
+    }
+    .info-carrousel {
+        height: 300px !important;
+        width: 300px !important;
+    }
+    .info-carrousel a:hover{
+        transform: scale(1.1,1.1);
+        transition: transform 0.3s ;
+    }
+    .flex-footer {
+        display: flex;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-around !important;
+    }
+    .bloc-footer {
+        width: 25%;
+    }
+    .social-network {
+        width: 30% !important;
+    }
+    .text-style5 {
+        font-size: 2.9em !important;
+    }
+    .slide-arrow-ctr{
+        left: 15%;
+        width: 70%;
+    }
+    .slide-arrow:hover{
+        transform: scale(1.3,1.3);
+        transition: transform 0.2s ;
+        background: radial-gradient(circle, rgb(117, 110, 110) 35%, rgba(98, 87, 87, 0.005) 78%, rgba(255, 255, 255, 0) 100%);
+    }
+    .social-network img{
+        width: 80px;
+        height: 55px;
+    }
+    .boutique-title{
+        display: flex;
+        justify-content: center;
+        margin: 35px 0;
+        width: 50%;
+    }
+    .filter{
+        position: absolute;
+        border: 2px solid black;
+        top: 180px;
+    }
+    .zone-filtre{
+        display: block;
+    }
+    .boutique-pointer{
+        cursor: auto;
+    }
+    #produit-ctr{
+        height: auto;
+        width: 75%;
+        margin: 35px 0 0px 25%;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: left;
+    }
+    .produit{
+        margin: 30px 90px;
+    }
+    .produit:hover{
+        transform: scale(1.05,1.05);
+        transition: transform 0.2s;
+        box-shadow: 5px 5px 10px #777;
+    }
+    .panier-ctr{
+        max-width: 500px;
+    }
+}
+
+
+
+
+
+/* 
+style pour définir la largeur des colonnes 
+*/
+
+.col-1 {
+    width: 8.33%;
+}
+.col-2 {
+    width: 16.66%;
+}
+.col-3 {
+    width: 25%;
+}
+.col-4 {
+    width: 33.33%;
+}
+.col-5 {
+    width: 41.66%;
+}
+.col-6 {
+    width: 50%;
+}
+.col-7 {
+    width: 58.33%;
+}
+.col-8 {
+    width: 66.66%;
+}
+.col-9 {
+    width: 75%;
+}
+.col-10 {
+    width: 83.33%;
+}
+.col-11 {
+    width: 91.66%;
+}
+.col-12 {
+    width: 100%;
+}
