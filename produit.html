@@ -8,15 +8,15 @@
     <link rel="icon" href="/images/logo.png" type="favicon">
     <link rel="stylesheet" href="/style.css">
 
-    <script defer src="script.js"></script>
-    <script type=".module" src="/src/main.js"></script>
-
+    <script defer src="scriptGeneral.js"></script>
+    <script defer src="scriptProduit.js"></script>
 
     <!--JQUERY link-->
     <script src="/node_modules/jquery/dist/jquery.js"></script>
     <!--VUEJS link-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://unpkg.com/vue-router@4.0.15/dist/vue-router.global.js"></script>
+
 </head>
 
 <body>
@@ -26,9 +26,6 @@
             <a href="/index.html"><img src="images/logo.png" alt="logo" width="70" height="70"></a>
         </div>
         <div id="header-right">
-            <div class="text-style1">
-                <p><a href="produit.html">produit</a></p>
-            </div>
             <div class="text-style1">
                 <p><a href="index.html">Accueil</a></p>
             </div>
@@ -58,31 +55,59 @@
         </div>
     </div>
     <div class="page-product-ctr content flexCol">
-        <div class="page-product-ctr">
-         
+        <div class="panier-ctr flexCol panier-ctr-pos">
+            <button class="close-cart close-cart-pos text-2em pointer">X</button>
+            <div class="panier-title flexCol width100">
+                <h2 class="text-style1">PANIER</h2>
+            </div>
+            <div class="panier-products-ctr width100">
+            </div>
+            <div class="panier-button-ctr flexCol width100">
+                <p class="user-price text-style1">15</p>
+                <div class="panier-button flexCol">
+                    <button class="text-style1 cart-reset">réinitialiser LE PANIER</button>
+                    <button class="text-style1 cart-validate">VALIDER LE PANIER</button>
+                </div>
+            </div>
+        </div>
+        <div class="page-product-dyn">
+            <div class="table flexCol alignBaseline width100">
+                <div id="produit-title" class="text-style1"></div>
+                <div id="produit-prix" class="text-style3"></div>
+                <div id="produit-desc" class="text-style4"></div>
+                <input type="number" id="qte" value="1" min="1">
+                <div class="text-style2">AJOUTER AU PANIER</div>
+            </div>
+            <div class="table-product flexCol">
+                <img id="produit-img" src="" alt="">
+            </div>
+            <div class="ingre content flexCol alignBaseline width100">
+                <div class="text-style1">Ingrédients</div>
+                <div id="produit-ingre"></div>
+            </div>
         </div>
 
 
         <!--<div class="table flexCol alignBaseline width100">
-            <div class="cul text-style1">Nom produit</div>
-            <div class="text-style3">XX €</div>
-            <div class="text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur.</div>
-            <input type="number" id="qte" value="1">
-            <div class="text-style2">AJOUTER AU PANIER</div>
-        </div>
-        <div class="table-product flexCol">
-            <img src="images/produit1.jpg" alt="produit1">
-        </div>
-        <div class="ingre content flexCol alignBaseline width100">
-            <div class="text-style1">Ingrédients</div>
-            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur.</div>
-        </div>-->
+                <div class="cul text-style1">Nom produit</div>
+                <div class="text-style3">XX €</div>
+                <div class="text-style4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                <input type="number" id="qte" value="1">
+                <div class="text-style2">AJOUTER AU PANIER</div>
+            </div>
+            <div class="table-product flexCol">
+                <img src="images/produit1.jpg" alt="produit1">
+            </div>
+            <div class="ingre content flexCol alignBaseline width100">
+                <div class="text-style1">Ingrédients</div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                    fugiat nulla pariatur.</div>
+            </div>-->
     </div>
     <!-- FOOTER -->
     <div class="footer alignBaseline flex-footer col-11">
