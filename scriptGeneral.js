@@ -6,7 +6,7 @@ $(".close-cart").on("click", function () {
     return slided;
 });
 // Déroule la panier au click sur l'icone cart
-$(".panier").on("click", function () {
+$(".panier img").on("click", function () {
     $(".panier-ctr").slideToggle(400);
     const slided = true;
     return slided;
@@ -43,27 +43,55 @@ $(document).ready(function () {
             let buttonAddToCart = document.querySelectorAll('.panier-produit');
 
             buttonAddToCart.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    let tata = products[index]
+              item.addEventListener('click', () => {
+                let dataFromJson = products[index]
 
-                    let cartArray = [];
-                            
-                    let productInCart = {
-                        image: '',
-                        title: '', 
-                        price: '',
-                        quantity: 1,
-                    };
+                let cartCtr = [];
+                        
+                let productInCart = {
+                    image: '',
+                    title: '', 
+                    price: '',
+                    quantity: 1,
+                    delete: 'X'
+                };
 
-                    productInCart.image = tata.image
-                    productInCart.title = tata.title
-                    productInCart.price = tata.price
+                productInCart.image = dataFromJson.image
+                productInCart.title = dataFromJson.title
+                productInCart.price = dataFromJson.price
+                
+                cartCtr.push(productInCart)
 
+                let productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
 
-                    cartArray.push(productInCart)
+                let productElementCart = document.createElement('div');
+                productElementCart.className = 'product-cart-dyn flexRow';
 
-                    console.log(cartArray)
+                // Html créé représentant les produits créés en dynamiques 
+                
+                productElementCart.innerHTML = `
+                <button class="close-cart supr-item">${cartCtr.map(a => a.delete)}</button>
+                <img src="${cartCtr.map(a => a.image)}" alt="${cartCtr.map(a => a.title)}">
+                <div>
+                    <p class="text-style3">${cartCtr.map(a => a.title)}</p>
+                    <p class="text-style3 price">${cartCtr.map(a => a.price)} &#x20AC;</p>
+                </div>
+                <input id="cart-item-number" type="number" value="${cartCtr.map(a => a.quantity)}" min="1"></input>
+                `;
+                // Les assignes en tant qu'enfant de produit
+                productContainerCart.appendChild(productElementCart);
+                
+                let tata = document.querySelector('.supr-item')
                 });
+                
+                function removeItemCart () {
+                    tata.addEventListener('click', function () {
+                        console.log('ok')
+                        cartCtr.pop()
+                        console.log(cartCtr)
+                    })
+                }
+
             });
 
 
