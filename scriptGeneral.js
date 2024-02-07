@@ -12,9 +12,9 @@ $(".panier img").on("click", function () {
     return slided;
 });
 
-$( document ).ready(function() {
+$.when( $.ready ).then(() => {
     fetch('/products.json')
-        .then(response => { return response.json() })
+        .then(response => { return response.json(); })
         .then(data => {
             const products = data.products || [];
 
@@ -42,6 +42,14 @@ $.when( $.ready ).then(() => {
 
                 let buttonAddToCart = document.querySelectorAll('.panier-produit');
                 let cartCtr = [];
+
+                //let activeCartArrayJson = sessionStorage.getItem("inCartArray");
+                //cartCtr = JSON.parse(activeCartArrayJson);
+
+                //let activeCartHtmlJson = sessionStorage.getItem("inCartHtmlProduct");
+                //productContainerCart.innerHTML = JSON.parse(activeCartHtmlJson);
+                console.log(cartCtr)
+                console.log("start")
 
                 buttonAddToCart.forEach((item, index) => {
                     item.addEventListener('click', () => {
@@ -73,6 +81,8 @@ $.when( $.ready ).then(() => {
 
                         // SI le produit n'est pas dans le panier -->
                         if (clickedObject === undefined) {
+                            
+                            console.log("if")
 
                             // push l'objet avec les infos voulus
                             cartCtr.push(productInCart);
@@ -82,39 +92,52 @@ $.when( $.ready ).then(() => {
 
                             // Création de l'HTML pour créer l'emplacement du produit dans le panier avec toutes les bonnes infos, image, titre etc...
                             productElementCart.innerHTML = `
-                    <button class="close-cart supr-item">${objectToPrint.delete}</button>
-                    <img src="${objectToPrint.image}" alt="${objectToPrint.title}">
-                    <div>
-                        <p class="text-style3">${objectToPrint.title}</p>
-                        <p class="text-style3 price">${objectToPrint.price} &#x20AC;</p>
-                    </div>
-                    <input class="cart-item-number cart-item${(objectToPrint.id)}" type="number" value="${objectToPrint.quantity}" min="1"></input>
-                    `;
+                            <button class="close-cart supr-item">${objectToPrint.delete}</button>
+                            <img src="${objectToPrint.image}" alt="${objectToPrint.title}">
+                            <div>
+                                <p class="text-style3">${objectToPrint.title}</p>
+                                <p class="text-style3 price">${objectToPrint.price} &#x20AC;</p>
+                            </div>
+                            <input class="cart-item-number cart-item${(objectToPrint.id)}" type="number" value="${objectToPrint.quantity}" min="1"></input>
+                            `;
                             // Les assignes en tant qu'enfant de produit
                             productContainerCart.appendChild(productElementCart);
 
-
                         } else { // SI le produit est déjà dans le panier
                             // Trouve l'objet en question
+
+                            console.log("else")
+
                             objectToChangeQuantity = cartCtr.find(objet => objet.id == index + 1);
+                            
+                            let quantityInputInCart = document.getElementsByClassName(`cart-item${objectToChangeQuantity.id}`)[0];
+                            
+                            objectToChangeQuantity.quantity = quantityInputInCart.value;
+                            
                             // Incrémente la quantité
-                            objectToChangeQuantity.quantity = objectToChangeQuantity.quantity + 1;
+                            let objectIncremented = parseInt(objectToChangeQuantity.quantity);
+                            objectIncremented++
+
                             // Change la quantité directement dans l'input de choix de quantité situé dans le panier
-                            document.getElementsByClassName(`cart-item${objectToChangeQuantity.id}`)[0].value = objectToChangeQuantity.quantity;
+                            quantityInputInCart.value = objectIncremented;
                         };
+
 
                         // Au click vide le tableau correspondant au panier et vide l'HTML pour vider les éléments visuels contenus dans le panier
                         let cartResetButton = document.getElementsByClassName('cart-reset')[0];
                         $(cartResetButton).on('click', () => {
                             cartCtr = [];
                             productElementCart.innerHTML = '';
+                            //sessionStorage.setItem("inCartArray", JSON.stringify(cartCtr));
+                            console.log(cartCtr)
+                            console.log("remove")
+                            
                         });
 
-
-
+                        //sessionStorage.setItem("inCartArray", JSON.stringify(cartCtr));
+                        //sessionStorage.setItem("inCartHtmlProduct", JSON.stringify(productContainerCart.innerHTML));
 
                     });
-
                 });
 
 
