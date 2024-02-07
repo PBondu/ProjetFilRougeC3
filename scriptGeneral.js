@@ -39,16 +39,16 @@ $(document).ready(function () {
         .then(response => { return response.json() })
         .then(data => {
             const products = data.products || [];
-
+            
             let buttonAddToCart = document.querySelectorAll('.panier-produit');
+            let cartCtr = [];
 
             buttonAddToCart.forEach((item, index) => {
               item.addEventListener('click', () => {
                 let dataFromJson = products[index]
 
-                let cartCtr = [];
-                        
                 let productInCart = {
+                    id: '',
                     image: '',
                     title: '', 
                     price: '',
@@ -56,30 +56,60 @@ $(document).ready(function () {
                     delete: 'X'
                 };
 
+                productInCart.id = dataFromJson.id
                 productInCart.image = dataFromJson.image
                 productInCart.title = dataFromJson.title
                 productInCart.price = dataFromJson.price
+
+                let quantityOfPoductInCart;
                 
-                cartCtr.push(productInCart)
-
-                let productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
-
-                let productElementCart = document.createElement('div');
-                productElementCart.className = 'product-cart-dyn flexRow';
+                console.log(cartCtr)
 
                 // Html créé représentant les produits créés en dynamiques 
+
+                let clickedObject = cartCtr.find(objet => objet.id == index + 1);
+
+                console.log(clickedObject)
+
+                const productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
+    
+                const productElementCart = document.createElement('div');
+                productElementCart.className = 'product-cart-dyn flexRow';
+
+
+                if (clickedObject === undefined) {
+
+                    cartCtr.push(productInCart)
+                    console.log(cartCtr)
+
+
+                    let objectToPrint = cartCtr.find(objet => objet.id == index + 1);
+
+                    productElementCart.innerHTML = `
+                    <button class="close-cart supr-item">${objectToPrint.delete}</button>
+                    <img src="${objectToPrint.image}" alt="${objectToPrint.title}">
+                    <div>
+                        <p class="text-style3">${objectToPrint.title}</p>
+                        <p class="text-style3 price">${objectToPrint.price} &#x20AC;</p>
+                    </div>
+                    <input class="cart-item-number cart-item${(objectToPrint.id)}" type="number" value="${objectToPrint.quantity}" min="1"></input>
+                    `;
+                    // Les assignes en tant qu'enfant de produit
+                    productContainerCart.appendChild(productElementCart);
                 
-                productElementCart.innerHTML = `
-                <button class="close-cart supr-item">${cartCtr.map(a => a.delete)}</button>
-                <img src="${cartCtr.map(a => a.image)}" alt="${cartCtr.map(a => a.title)}">
-                <div>
-                    <p class="text-style3">${cartCtr.map(a => a.title)}</p>
-                    <p class="text-style3 price">${cartCtr.map(a => a.price)} &#x20AC;</p>
-                </div>
-                <input id="cart-item-number" type="number" value="${cartCtr.map(a => a.quantity)}" min="1"></input>
-                `;
-                // Les assignes en tant qu'enfant de produit
-                productContainerCart.appendChild(productElementCart);
+                    
+                } else {
+
+                    objectToChangeQuantity = cartCtr.find(objet => objet.id == index + 1);
+
+                    objectToChangeQuantity.quantity = objectToChangeQuantity.quantity + 1
+                    
+                    console.log(objectToChangeQuantity.quantity)
+
+                    document.getElementsByClassName(`cart-item${objectToChangeQuantity.id}`)[0].value = objectToChangeQuantity.quantity;
+                    
+                }
+                
                 
                 let tata = document.querySelector('.supr-item')
                 });

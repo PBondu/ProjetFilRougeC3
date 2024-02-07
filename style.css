@@ -313,6 +313,18 @@ Fin style page d'accueil
     padding: 20px;
 }
 
+#prix-min{
+    width:80px;
+    margin-left: 5px;
+}
+
+#prix-max{
+    width:80px;
+    margin-left: 2px;
+}
+
+
+
 /* 
 STYLE PRODUITS
 */
@@ -435,7 +447,7 @@ PRODUITS PANIER
     border-radius: 5px;
 }
 
-#cart-item-number{
+.cart-item-number{
     width: 45px;
 }
 
@@ -535,7 +547,6 @@ Style pour version bureau et tablettes
         display: flex;
         justify-content: center;
         margin: 35px 0;
-        width: 50%;
     }
     .filter{
         position: absolute;
@@ -550,14 +561,13 @@ Style pour version bureau et tablettes
     }
     #produit-ctr{
         height: auto;
-        width: 75%;
-        margin: 35px 0 0px 25%;
+        padding: 35px 0 0px 20%;
         flex-wrap: wrap;
         flex-direction: row;
         justify-content: left;
     }
     .produit{
-        margin: 30px 90px;
+        margin: 30px 75px;
     }
     .produit:hover{
         transform: scale(1.05,1.05);
