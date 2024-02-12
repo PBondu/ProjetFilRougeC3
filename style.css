@@ -389,8 +389,8 @@ STYLE PANIER
     display: none;
     justify-content: flex-start !important;
     width: 100%;
-    height: 100%;
-    background-color: #55C0CF;
+    height: auto;
+    background-color: #FFD543;
     z-index: 1000;
 }
 
@@ -405,20 +405,22 @@ STYLE PANIER
     width: 30px;
     border: none;
     background-color: transparent;
+    color: #FFFFFF;
 }
 
 .panier-title{
     height: 15vh;
-    background-color: rgba(196, 64, 134, 0.586);
+    background-color: #2C1E1E;
+    color: #FFFFFF;
 }
 .panier-products-ctr{
+    overflow-y: auto;
     min-height: 40vh;
-    background-color: darkolivegreen;
 }
 .panier-button-ctr{
     position: sticky;
     height: 250px;
-    background-color: goldenrod;
+    background-color: #2C1E1E;
 }
 .panier-button{
     height: 50%;
