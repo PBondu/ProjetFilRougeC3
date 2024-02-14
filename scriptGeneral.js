@@ -51,24 +51,30 @@ $.when($.ready).then(() => {
             productContainerCart.innerHTML = productContainerCartSessionStorage;
 
             let buttonAddToCartBoutique = document.querySelectorAll('.panier-produit');
-            let buttonAddToCartProduit = document.querySelectorAll('.panier-produit');
+            let buttonDeleteItem = document.querySelectorAll('.product-cart-dyn button');
 
             // Défini le panier avec les éléments de la session
             cartCtr = cartSessionStorage;
 
             if(cartCtr[0] != undefined) {
-                updateTotalQuantity();
+            updateTotalQuantity();
             };
 
-            console.log(cartCtr)
 
             $('body').on('change', () => {
                 updateTotalQuantity();
-            })
+            });
+            
+            
+            $(buttonDeleteItem).on('click', () => {
+                deleteItemfromCart();
+                console.log(buttonDeleteItem)
+            });
 
             keepQuantityOnRefresh();
 
             getQuantityOnUserChange();
+
 
             // Panier V2
             buttonAddToCartBoutique.forEach((item, index) => {
@@ -76,7 +82,6 @@ $.when($.ready).then(() => {
                     addToCart(index);
                 });
             });
-
 
 
             function addToCart (index) {
@@ -104,13 +109,15 @@ $.when($.ready).then(() => {
 
                 // Permet de chercher si l'id du produit est déjà dans le panier
                 let clickedObject = cartCtr.find(objet => objet.id == index + 1);
-
+                console.log(clickedObject)
+                console.log(cartCtr)
 
 
                 // SI le produit n'est pas dans le panier -->
                 if (clickedObject.use == 0) {
                     PrintHtmlProductInCart();
                     getQuantityOnUserChange();
+                    
 
                 } else { // SI le produit est déjà dans le panier
                     // Pop out le dernier produit ajouté en double
@@ -135,11 +142,11 @@ $.when($.ready).then(() => {
                     // Création du container HTML pour le produit dans le panier
                     // ProductContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
                     let productElementCart = document.createElement('div');
-                    productElementCart.className = 'product-cart-dyn flexRow';
+                    productElementCart.className = `product-cart-dyn cart${clickedObject.id} flexRow`;
 
                     // Création de l'HTML pour créer l'emplacement du produit dans le panier avec toutes les bonnes infos, image, titre etc...
                     productElementCart.innerHTML = `
-                    <button class="close-cart supr-item">${clickedObject.delete}</button>
+                    <button id="${clickedObject.id}" class="close-cart close-cart${clickedObject.id} supr-item">${clickedObject.delete}</button>
                     <img src="${clickedObject.image}" alt="${clickedObject.title}">
                     <div>
                         <p class="text-style3">${clickedObject.title}</p>
@@ -191,7 +198,7 @@ $.when($.ready).then(() => {
                 };
             };
 
-            function updateTotalQuantity () {
+            function updateTotalQuantity() {
                     let totalCounter = document.getElementsByClassName('user-price')[0];
                     let totalQuantityInCart = 0;
                     for (let product of cartCtr) {
@@ -199,6 +206,23 @@ $.when($.ready).then(() => {
                     }
                     totalCounter.innerHTML = totalQuantityInCart;
             };
+
+            function deleteItemfromCart() {
+                buttonDeleteItem.forEach((item, index) => {
+                    console.log(item.id)
+                    console.log(index)
+                    console.log(cartCtr[index].id)
+                    cartCtr.splice(cartCtr[index], 1)
+                    let nia = document.getElementsByClassName(`cart${item.id}`)[0];
+                    nia.remove()
+                    console.log(nia)
+                    console.log(cartCtr)
+                    sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+                    sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
+                });
+            };
+            console.log(buttonDeleteItem)
+
         });
 });
 
