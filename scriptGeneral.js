@@ -1,34 +1,34 @@
 // PANIER DEROULANT
 // Ferme le panier en cliquant sur le bouton en forme de croix
 $(".close-cart").on("click", () => {
-    $(".panier-ctr").slideToggle(400);
-    const slided = true;
-    return slided;
+  $(".panier-ctr").slideToggle(400);
+  const slided = true;
+  return slided;
 });
 // Déroule la panier au click sur l'icone cart
 $(".panier img").on("click", () => {
-    $(".panier-ctr").slideToggle(400);
-    const slided = true;
-    return slided;
+  $(".panier-ctr").slideToggle(400);
+  const slided = true;
+  return slided;
 });
 
 $.when($.ready).then(() => {
-    fetch('/products.json')
-        .then(response => { return response.json(); })
-        .then(data => {
-            const products = data.products || [];
+  fetch('/products.json')
+    .then(response => { return response.json(); })
+    .then(data => {
+      const products = data.products || [];
 
-            let menuProducts = document.querySelectorAll('.produit-info-div');
+      let menuProducts = document.querySelectorAll('.produit-info-div');
 
-            menuProducts.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    choiceProduct = products[index];
-                    sessionStorage.setItem("productSelected", JSON.stringify(choiceProduct));
-                    window.location = "/produit.html";
-                });
-            });
+      menuProducts.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          choiceProduct = products[index];
+          sessionStorage.setItem("productSelected", JSON.stringify(choiceProduct));
+          window.location = "/produit.html";
         });
-});
+      });
+    });                   
+});             
 
 
 let cartCtr = [];
@@ -36,194 +36,194 @@ let cartCtr = [];
 
 // ESPACE TEST CREATION PANIER
 $.when($.ready).then(() => {
-    fetch('/products.json')
-        .then(response => { return response.json(); })
-        .then(data => {
-            const products = data.products || [];
+  fetch('/products.json')
+    .then(response => { return response.json(); })
+    .then(data => {
+      const products = data.products || [];
 
-            // Lien avec la div présente dans le HTML
-            let productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
+      // Lien avec la div présente dans le HTML
+      let productContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
 
-            // Get les items du panier stockés dans la session
-            let cartSessionStorage = sessionStorage.getItem("cartCtr") ? JSON.parse(sessionStorage.getItem("cartCtr")) : [];
-            let productContainerCartSessionStorage = sessionStorage.getItem("productContainerCart") ? JSON.parse(sessionStorage.getItem("productContainerCart")) : null;
+      // Get les items du panier stockés dans la session
+      let cartSessionStorage = sessionStorage.getItem("cartCtr") ? JSON.parse(sessionStorage.getItem("cartCtr")) : [];
+      let productContainerCartSessionStorage = sessionStorage.getItem("productContainerCart") ? JSON.parse(sessionStorage.getItem("productContainerCart")) : null;
 
-            productContainerCart.innerHTML = productContainerCartSessionStorage;
+      productContainerCart.innerHTML = productContainerCartSessionStorage;
 
-            let buttonAddToCartBoutique = document.querySelectorAll('.panier-produit');
-            let buttonDeleteItem = document.querySelectorAll('.product-cart-dyn button');
+      let buttonAddToCartBoutique = document.querySelectorAll('.panier-produit');
+      let buttonDeleteItem = document.querySelectorAll('.product-cart-dyn button');
 
-            // Défini le panier avec les éléments de la session
-            cartCtr = cartSessionStorage;
+      // Défini le panier avec les éléments de la session
+      cartCtr = cartSessionStorage;
 
-            if(cartCtr[0] != undefined) {
-            updateTotalQuantity();
-            };
-
-
-            $('body').on('change', () => {
-                updateTotalQuantity();
-            });
-            
-            
-            $(buttonDeleteItem).on('click', () => {
-                deleteItemfromCart();
-                console.log(buttonDeleteItem)
-            });
-
-            keepQuantityOnRefresh();
-
-            getQuantityOnUserChange();
+      if(cartCtr[0] != undefined) {
+      updateTotalQuantity();
+      };
 
 
-            // Panier V2
-            buttonAddToCartBoutique.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    addToCart(index);
-                });
-            });
+      $('body').on('change', () => {
+        updateTotalQuantity();
+      });
 
+      deleteItemfromCart();
 
-            function addToCart (index) {
-                let dataFromJson = products[index];
+      keepQuantityOnRefresh();
 
-                // Déclaration de l'objet contenant les infos du produit affichées dans le panier
-                let productInCart = {
-                    id: '',
-                    image: '',
-                    title: '',
-                    price: '',
-                    quantity: 1,
-                    delete: 'X',
-                    use: 0
-                };
+      getQuantityOnUserChange();
 
-                // Transfert des infos désirée, du json vers l'objet
-                productInCart.id = dataFromJson.id;
-                productInCart.image = dataFromJson.image;
-                productInCart.title = dataFromJson.title;
-                productInCart.price = dataFromJson.price;
-
-                // push l'objet avec les infos voulus
-                cartCtr.push(productInCart);
-
-                // Permet de chercher si l'id du produit est déjà dans le panier
-                let clickedObject = cartCtr.find(objet => objet.id == index + 1);
-                console.log(clickedObject)
-                console.log(cartCtr)
-
-
-                // SI le produit n'est pas dans le panier -->
-                if (clickedObject.use == 0) {
-                    PrintHtmlProductInCart();
-                    getQuantityOnUserChange();
-                    
-
-                } else { // SI le produit est déjà dans le panier
-                    // Pop out le dernier produit ajouté en double
-                    cartCtr.pop()
-
-                    getQuantityOnUserChange();
-
-                    // Incrémente la quantité de l'objet dans le cart
-                    clickedObject.quantity++
-
-                    let quantityInput = document.getElementsByClassName(`cart-item${clickedObject.id}`)[0];
-                    quantityInput.value = clickedObject.quantity // Qté dans le cart = qté dans l'input
-
-                    sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
-                    sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
-                };
-                
-                updateTotalQuantity();
-
-
-                function PrintHtmlProductInCart() {
-                    // Création du container HTML pour le produit dans le panier
-                    // ProductContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
-                    let productElementCart = document.createElement('div');
-                    productElementCart.className = `product-cart-dyn cart${clickedObject.id} flexRow`;
-
-                    // Création de l'HTML pour créer l'emplacement du produit dans le panier avec toutes les bonnes infos, image, titre etc...
-                    productElementCart.innerHTML = `
-                    <button id="${clickedObject.id}" class="close-cart close-cart${clickedObject.id} supr-item">${clickedObject.delete}</button>
-                    <img src="${clickedObject.image}" alt="${clickedObject.title}">
-                    <div>
-                        <p class="text-style3">${clickedObject.title}</p>
-                        <p class="text-style3 price">${clickedObject.price} &#x20AC;</p>
-                    </div>
-                    <input class="cart-item-number cart-item${clickedObject.id}" type="number" value="${clickedObject.quantity}" min="1"></input>
-                    `;
-                    // Les assignes en tant qu'enfant de produit
-                    productContainerCart.appendChild(productElementCart);
-
-                    // Incrémente "use" pour signaler que le produit est déjà dans le panier
-                    clickedObject.use++
-
-                    sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
-                    sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
-                };
-            };
-
-            // Au click vide le tableau correspondant au panier et vide l'HTML pour vider les éléments visuels contenus dans le panier
-            let cartResetButton = document.getElementsByClassName('cart-reset')[0];
-            $(cartResetButton).on('click', () => {
-                cartCtr = [];
-                productContainerCart.innerHTML = '';
-
-                sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
-                sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
-
-                updateTotalQuantity();
-            });
-
-            // Garde la quantité du produit au sein du cart quand l'user change la quantité manuellement
-            function getQuantityOnUserChange() {
-                for (let index = 1; index < products.length; index++) {
-                    $(`.cart-item${(index)}`).on("change", () => {
-                        let quantityInput = document.getElementsByClassName(`cart-item${(index)}`)[0]; // Récupère l'input
-                        let objectToChangeQuantity = cartCtr.find(objet => objet.id == index); // Récupère l'objet
-                        objectToChangeQuantity.quantity = parseInt(quantityInput.value); // La quantité dans le cart = quantité de l'input
-    
-                        sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
-                    });
-                };
-            };
-
-            // Garde la quantité des produits au refresh
-            function keepQuantityOnRefresh() {
-                for (let index = 0; index < cartCtr.length; index++) {
-                    let quantityInput = document.getElementsByClassName(`cart-item${cartCtr[index].id}`)[0]; // Récupère l'input lié à l'id du produit en question
-                    quantityInput.value = cartCtr[index].quantity; // la valeur de l'input est égale à la valeur de la quantity dans le cart
-                };
-            };
-
-            function updateTotalQuantity() {
-                    let totalCounter = document.getElementsByClassName('user-price')[0];
-                    let totalQuantityInCart = 0;
-                    for (let product of cartCtr) {
-                        totalQuantityInCart += product.quantity;
-                    }
-                    totalCounter.innerHTML = totalQuantityInCart;
-            };
-
-            function deleteItemfromCart() {
-                buttonDeleteItem.forEach((item, index) => {
-                    console.log(item.id)
-                    console.log(index)
-                    console.log(cartCtr[index].id)
-                    cartCtr.splice(cartCtr[index], 1)
-                    let nia = document.getElementsByClassName(`cart${item.id}`)[0];
-                    nia.remove()
-                    console.log(nia)
-                    console.log(cartCtr)
-                    sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
-                    sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
-                });
-            };
-            console.log(buttonDeleteItem)
-
+      // Ajout au panier page BOUTIQUE.HTML
+      buttonAddToCartBoutique.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          addToCart(index);
         });
+      });
+
+      // Ajout au panier page PRODUIT.HTML
+      for (let index = 0; index < products.length; index++) {
+        $(`produit-button-${index + 1}`).on('click', () => {
+          //addToCart(index + 1);
+          console.log('ok')
+        });
+      };
+
+
+      function addToCart (index) {
+        let dataFromJson = products[index];
+
+        // Déclaration de l'objet contenant les infos du produit affichées dans le panier
+        let productInCart = {
+          id: '',
+          image: '',
+          title: '',
+          price: '',
+          quantity: 1,
+          delete: 'X',
+          use: 0
+        };
+
+        // Transfert des infos désirée, du json vers l'objet
+        productInCart.id = dataFromJson.id;
+        productInCart.image = dataFromJson.image;
+        productInCart.title = dataFromJson.title;
+        productInCart.price = dataFromJson.price;
+
+        // push l'objet avec les infos voulus
+        cartCtr.push(productInCart);
+
+        // Permet de chercher si l'id du produit est déjà dans le panier
+        let clickedObject = cartCtr.find(objet => objet.id == index + 1);
+        console.log(clickedObject)
+        console.log(cartCtr)
+
+
+        // SI le produit n'est pas dans le panier -->
+        if (clickedObject.use == 0) {
+          PrintHtmlProductInCart();
+          getQuantityOnUserChange();
+            
+
+        } else { // SI le produit est déjà dans le panier
+          // Pop out le dernier produit ajouté en double
+          cartCtr.pop()
+
+          getQuantityOnUserChange();
+
+          // Incrémente la quantité de l'objet dans le cart
+          clickedObject.quantity++
+
+          let quantityInput = document.getElementsByClassName(`cart-item${clickedObject.id}`)[0];
+          quantityInput.value = clickedObject.quantity // Qté dans le cart = qté dans l'input
+
+          sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+          sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
+        };
+        
+        updateTotalQuantity();
+
+
+        function PrintHtmlProductInCart() {
+          // Création du container HTML pour le produit dans le panier
+          // ProductContainerCart = document.getElementsByClassName("panier-products-ctr")[0];
+          let productElementCart = document.createElement('div');
+          productElementCart.className = `product-cart-dyn cart${clickedObject.id} flexRow`;
+
+          // Création de l'HTML pour créer l'emplacement du produit dans le panier avec toutes les bonnes infos, image, titre etc...
+          productElementCart.innerHTML = `
+          <button id="${clickedObject.id}" class="close-cart close-cart${clickedObject.id} supr-item">${clickedObject.delete}</button>
+          <img src="${clickedObject.image}" alt="${clickedObject.title}">
+          <div>
+              <p class="text-style3">${clickedObject.title}</p>
+              <p class="text-style3 price">${clickedObject.price} &#x20AC;</p>
+          </div>
+          <input class="cart-item-number cart-item${clickedObject.id}" type="number" value="${clickedObject.quantity}" min="1"></input>
+          `;
+          // Les assignes en tant qu'enfant de produit
+          productContainerCart.appendChild(productElementCart);
+
+          // Incrémente "use" pour signaler que le produit est déjà dans le panier
+          clickedObject.use++
+
+          sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+          sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
+        };
+      };
+
+      // Au click vide le tableau correspondant au panier et vide l'HTML pour vider les éléments visuels contenus dans le panier
+      let cartResetButton = document.getElementsByClassName('cart-reset')[0];
+      $(cartResetButton).on('click', () => {
+        cartCtr = [];
+        productContainerCart.innerHTML = '';
+
+        sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+        sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
+
+        updateTotalQuantity();
+      });
+
+      // Garde la quantité du produit au sein du cart quand l'user change la quantité manuellement
+      function getQuantityOnUserChange() {
+        for (let index = 1; index < products.length; index++) {
+          $(`.cart-item${(index)}`).on("change", () => {
+            let quantityInputOnchange = document.getElementsByClassName(`cart-item${(index)}`)[0]; // Récupère l'input
+            let objectToChangeQuantity = cartCtr.find(objet => objet.id == index); // Récupère l'objet
+            objectToChangeQuantity.quantity = parseInt(quantityInputOnchange.value); // La quantité dans le cart = quantité de l'input
+
+            sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+          });
+        };
+      };
+
+      // Garde la quantité des produits au refresh
+      function keepQuantityOnRefresh() {
+        for (let index = 0; index < cartCtr.length; index++) {
+          let quantityInputRefresh = document.getElementsByClassName(`cart-item${cartCtr[index].id}`)[0]; // Récupère l'input lié à l'id du produit en question
+          quantityInputRefresh.value = cartCtr[index].quantity; // la valeur de l'input est égale à la valeur de la quantity dans le cart
+        };
+      };
+
+      function updateTotalQuantity() {
+        let totalCounter = document.getElementsByClassName('user-price')[0];
+        let totalQuantityInCart = 0;
+        for (let product of cartCtr) {
+          totalQuantityInCart += product.quantity;
+        }
+        totalCounter.innerHTML = totalQuantityInCart;
+      };
+
+
+      function deleteItemfromCart() {
+        for (let index = 0; index < cartCtr.length; index++) {
+          $(buttonDeleteItem[index]).on('click', () => {
+            let nia = document.getElementsByClassName(`cart${cartCtr[index].id}`)[0];
+            nia.remove()
+            cartCtr.splice(cartCtr[index], 1)
+            console.log(index)
+            sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+            sessionStorage.setItem("productContainerCart", JSON.stringify(productContainerCart.innerHTML));
+          });
+        };
+      };
+    });
 });
 
 
