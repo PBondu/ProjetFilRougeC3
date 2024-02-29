@@ -41,7 +41,7 @@ fetch('/products.json')
       let inputButtonCtr = document.getElementById("input-button-ctr");
       inputButtonCtr.innerHTML = `
       <input id="produit-input-${choiceProduct.id}" type="number" id="qte" value="1" min="1">
-      <div id="produit-button-${choiceProduct.id}" class="text-style2">AJOUTER AU PANIER</div></div>`;
+      <button id="produit-button-${choiceProduct.id}" class="text-style2">AJOUTER AU PANIER</button>`;
 
       // Les assignes en tant qu'enfant de produit
       pageProductCtr.appendChild(pageProductElement);

@@ -121,6 +121,7 @@ fetch('/products.json')
             `;
             productElementButton.innerHTML =
             '<button class="panier-produit pointer border-style text-style3">Ajouter au Panier</button>'
+            //<button onclick="myFunction()">Click me</button>
 
             productElement.appendChild(productElementInfo);
             productElement.appendChild(productElementButton);

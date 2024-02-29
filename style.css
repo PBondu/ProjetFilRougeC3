@@ -386,7 +386,7 @@ STYLE PANIER
 }
 
 .panier-ctr{
-    /*display: none;*/
+    display: none;
     justify-content: flex-start !important;
     width: 100%;
     height: auto;
