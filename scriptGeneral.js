@@ -12,6 +12,14 @@ $(".panier img").on("click", () => {
   return slided;
 });
 
+// MENU BURGER DEROULANT
+// Fonction qui permet l'ouverture et la fermeture de la barre de nav
+$("#burgerMenu img").on("click", function () {
+  $(".header-mobile").slideToggle(300);
+  const slided = true;
+  return slided;
+});
+
 $.when($.ready).then(() => {
   fetch('/products.json')
     .then(response => { return response.json(); })

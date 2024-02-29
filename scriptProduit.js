@@ -3,15 +3,6 @@ fetch('/products.json')
   .then(data => {
     const products = data.products || [];       
 
-    // MENU BURGER DEROULANT
-    // Fonction qui permet l'ouverture et la fermeture de la barre de nav
-    $("#burgerMenu img").on("click", function () {
-      $(".header-mobile").slideToggle(300);
-      const slided = true;
-      return slided;
-    });
-
-
     $.when( $.ready ).then(() => {
       let getProductObj = sessionStorage.getItem("productSelected");
       const choiceProduct = JSON.parse(getProductObj);
@@ -40,8 +31,8 @@ fetch('/products.json')
 
       let inputButtonCtr = document.getElementById("input-button-ctr");
       inputButtonCtr.innerHTML = `
-      <input id="produit-input-${choiceProduct.id}" type="number" id="qte" value="1" min="1">
-      <button id="produit-button-${choiceProduct.id}" class="text-style2">AJOUTER AU PANIER</button>`;
+      <input id="produit-input-${choiceProduct.id}" class="input-button col-5" type="number" id="qte" value="1" min="1">
+      <button id="produit-button-${choiceProduct.id}" class="text-style2 cart-button">AJOUTER AU PANIER</button>`;
 
       // Les assignes en tant qu'enfant de produit
       pageProductCtr.appendChild(pageProductElement);
