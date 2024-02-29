@@ -27,8 +27,8 @@ $.when($.ready).then(() => {
           window.location = "/produit.html";
         });
       });
-    });                   
-});             
+    });
+});
 
 
 let cartCtr = [];
@@ -51,20 +51,20 @@ $.when($.ready).then(() => {
 
       // Défini le panier avec les éléments de la session
       cartCtr = cartSessionStorage;
-      console.log(cartCtr)
       var totalPrice = document.getElementsByClassName('user-price')[0];
 
-      function resetPrintHtml(){
+      function resetPrintHtml() {
         productContainerCart.innerHTML = '';
         cartCtr.forEach(element => {
-        PrintHtmlProductInCart(element)
-      });}
+          PrintHtmlProductInCart(element);
+        });
+      };
 
       resetPrintHtml();
 
       getQuantityOnUserChange();
 
-      updateTotalPrice()
+      updateTotalPrice();
 
       deleteCall();
 
@@ -72,16 +72,17 @@ $.when($.ready).then(() => {
       buttonAddToCartBoutique.forEach((item, index) => {
         item.addEventListener('click', () => {
           let clickedObject = products.find(objet => objet.id == index + 1);
-          addToCart(clickedObject);
+          addToCartBoutique(clickedObject);
           getQuantityOnUserChange();
           deleteCall();
           updateTotalPrice();
         });
       });
 
-      for (let i = 0; i < products.length+1; i++) {        
+      // Ajout au panier page PRODUIT.HTML
+      for (let i = 0; i < products.length + 1; i++) {
         $(`#produit-button-${i}`).on('click', () => {
-          addToCart (products[i-1]);
+          addToCartProduit(products[i - 1]);
           getQuantityOnUserChange();
           deleteCall();
           updateTotalPrice();
@@ -89,7 +90,7 @@ $.when($.ready).then(() => {
       };
 
 
-      function addToCart (productToAdd) {
+      function addToCartBoutique(productToAdd) {
         let objInCart = cartCtr.find(objet => objet.id == productToAdd.id);
         if (objInCart === undefined) {
           productToAdd.quantity = 1;
@@ -100,12 +101,28 @@ $.when($.ready).then(() => {
         } else {
           objInCart.quantity++;
           objInCart.totalPrice = objInCart.quantity * objInCart.price;
-          console.log(cartCtr);
           document.getElementsByClassName(`cart-item${(objInCart.id)}`)[0].value = objInCart.quantity;
           sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
         }
       };
-        
+
+      function addToCartProduit(productToAdd) {
+        let objInCart = cartCtr.find(objet => objet.id == productToAdd.id);
+        let inputProduct = document.querySelector(`#produit-input-${productToAdd.id}`);
+        if (objInCart === undefined) {
+          productToAdd.quantity = inputProduct.valueAsNumber;
+          productToAdd.totalPrice = productToAdd.quantity * productToAdd.price;
+          cartCtr.push(productToAdd);
+          PrintHtmlProductInCart(productToAdd);
+          sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+        } else {
+          objInCart.quantity += inputProduct.valueAsNumber;
+          objInCart.totalPrice = objInCart.quantity * objInCart.price;
+          document.getElementsByClassName(`cart-item${(objInCart.id)}`)[0].value = objInCart.quantity;
+          sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
+        }
+      };
+
       function PrintHtmlProductInCart(productToAdd) {
         // Création du container HTML pour le produit dans le panier
         let productElementCart = document.createElement('div');
@@ -138,14 +155,14 @@ $.when($.ready).then(() => {
 
       // Garde la quantité du produit au sein du cart quand l'user change la quantité manuellement
       function getQuantityOnUserChange() {
-        for (let index = 1; index < products.length+1; index++) {
+        for (let index = 1; index < products.length + 1; index++) {
           $(`.cart-item${(index)}`).on("change", () => {
             let quantityInputOnchange = document.getElementsByClassName(`cart-item${(index)}`)[0]; // Récupère l'input
             let objectToChangeQuantity = cartCtr.find(objet => objet.id == index); // Récupère l'objet
             objectToChangeQuantity.quantity = parseInt(quantityInputOnchange.value); // La quantité dans le cart = quantité de l'input
             objectToChangeQuantity.totalPrice = objectToChangeQuantity.quantity * objectToChangeQuantity.price;
             sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
-            updateTotalPrice(); 
+            updateTotalPrice();
           });
         };
       };
@@ -158,12 +175,12 @@ $.when($.ready).then(() => {
         totalPrice.innerHTML = `${priceAdd.toFixed(2)} €`;
       };
 
-      function deleteCall(){
+      function deleteCall() {
         cartCtr.forEach(element => {
           deleteItemfromCart(element);
         });
       };
-      
+
       function deleteItemfromCart(element) {
         $(`#close-cart${element.id}`).on('click', () => {
           cartCtr.splice(cartCtr.indexOf(element), 1);
