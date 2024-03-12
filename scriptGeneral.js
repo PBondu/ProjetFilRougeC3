@@ -20,24 +20,6 @@ $("#burgerMenu img").on("click", function () {
   return slided;
 });
 
-$.when($.ready).then(() => {
-  fetch('/products.json')
-    .then(response => { return response.json(); })
-    .then(data => {
-      const products = data.products || [];
-
-      let menuProducts = document.querySelectorAll('.produit-info-div');
-
-      menuProducts.forEach((item, index) => {
-        item.addEventListener('click', () => {
-          choiceProduct = products[index];
-          sessionStorage.setItem("productSelected", JSON.stringify(choiceProduct));
-          window.location = "/produit.html";
-        });
-      });
-    });
-});
-
 
 let cartCtr = [];
 
@@ -67,6 +49,17 @@ $.when($.ready).then(() => {
           PrintHtmlProductInCart(element);
         });
       };
+      
+      function PrintCartQuantity() {
+        var quantOfProduct = 0;
+        for (let i = 0; i < cartCtr.length; i++) {
+          quantOfProduct += cartCtr[i].quantity;
+        };
+        var truc = document.getElementById('cart-number');
+        truc.innerHTML = quantOfProduct;
+      };
+
+      PrintCartQuantity()
 
       resetPrintHtml();
 
@@ -84,6 +77,7 @@ $.when($.ready).then(() => {
           getQuantityOnUserChange();
           deleteCall();
           updateTotalPrice();
+          PrintCartQuantity()
         });
       });
 
@@ -94,6 +88,7 @@ $.when($.ready).then(() => {
           getQuantityOnUserChange();
           deleteCall();
           updateTotalPrice();
+          PrintCartQuantity()
         });
       };
 
@@ -159,6 +154,7 @@ $.when($.ready).then(() => {
         sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
         updateTotalPrice();
         resetPrintHtml();
+        PrintCartQuantity()
       });
 
       // Garde la quantité du produit au sein du cart quand l'user change la quantité manuellement
@@ -171,6 +167,7 @@ $.when($.ready).then(() => {
             objectToChangeQuantity.totalPrice = objectToChangeQuantity.quantity * objectToChangeQuantity.price;
             sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
             updateTotalPrice();
+            PrintCartQuantity()
           });
         };
       };
@@ -191,9 +188,13 @@ $.when($.ready).then(() => {
 
       function deleteItemfromCart(element) {
         $(`#close-cart${element.id}`).on('click', () => {
+          PrintCartQuantity()
           cartCtr.splice(cartCtr.indexOf(element), 1);
+          resetPrintHtml();
+          /*
           let itemToDelete = document.getElementsByClassName(`cart${element.id}`)[0];
-          itemToDelete.remove();
+          itemToDelete.remove();*/
+          console.log(cartCtr)
           sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
           updateTotalPrice();
         });
