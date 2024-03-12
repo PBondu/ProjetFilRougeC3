@@ -473,6 +473,10 @@ STYLE PANIER
   transition: transform 0.2s;
 }
 
+#cart-number{
+  margin-left: 15px;
+}
+
 /*
 PRODUITS PANIER
 */

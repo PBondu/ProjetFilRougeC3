@@ -190,11 +190,8 @@ $.when($.ready).then(() => {
         $(`#close-cart${element.id}`).on('click', () => {
           PrintCartQuantity()
           cartCtr.splice(cartCtr.indexOf(element), 1);
-          resetPrintHtml();
-          /*
           let itemToDelete = document.getElementsByClassName(`cart${element.id}`)[0];
-          itemToDelete.remove();*/
-          console.log(cartCtr)
+          itemToDelete.remove();
           sessionStorage.setItem("cartCtr", JSON.stringify(cartCtr));
           updateTotalPrice();
         });
