@@ -427,7 +427,7 @@ STYLE PANIER
   left: 20px;
 }
 
-.close-cart {
+.close-cart, .supr-item {
   height: 40px;
   width: 30px;
   border: none;
@@ -496,7 +496,7 @@ PRODUITS PANIER
 }
 
 .cart-item-number {
-  width: 45px;
+  width: 55px;
 }
 
 .product-cart-dyn div {

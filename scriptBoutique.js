@@ -119,7 +119,7 @@ fetch('/products.json')
             <p class="text-style3 note">Note: ${product.note}</p>
             `;
       productElementButton.innerHTML =
-        '<button class="panier-produit pointer border-style text-style3">Ajouter au Panier</button>'
+        `<button onClick="addToCartlinkBoutique(${product.id})" class="panier-produit pointer border-style text-style3">Ajouter au Panier</button>`
       //<button onclick="myFunction()">Click me</button>
 
       productElement.appendChild(productElementInfo);
